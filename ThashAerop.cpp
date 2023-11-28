@@ -196,4 +196,22 @@ unsigned long ThashAerop::numElementos() {
     return tamlog;
 }
 
-ThashAerop::
+unsigned int ThashAerop::nMaxColisiones(){
+    return maxColisiones;
+}
+
+unsigned int ThashAerop::numMax10(){
+    return max10;
+}
+
+float ThashAerop::promedioColisiones(){
+    return (float)sumaColisiones/tamalog;
+}
+
+float ThashAerop::factorCarga(){
+    return (float)tamlog/tamfis;
+}
+
+void ThashAerop::mostrarEstadoTabla(){
+
+}
