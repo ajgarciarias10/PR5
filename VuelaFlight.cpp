@@ -46,6 +46,7 @@ Ruta &VuelaFlight::buscarRutasOriDeS(string idAerOrig, string idAerDest) {
     origen=routesOrig.find(idAerOrig);
     if(origen!=routesOrig.end()){
         multimap<string,Ruta*>::iterator destino=routesDest.find(idAerDest);
+        if(destino != routesDest.end())
         for (; origen!=routesOrig.end(); ++origen) {
             if (origen->second.getDestination()->getIata()==idAerDest)
                 return *(destino->second);
