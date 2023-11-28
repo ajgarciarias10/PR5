@@ -120,3 +120,20 @@ unsigned long ThashAerop:: djb2(unsigned char *str) {
     return hash;
 }
 
+bool ThashAerop::insertar(unsigned long clave, const Aeropuerto &aeropuerto) {
+    int colisiones=0;
+    int pos;
+    bool encontrado= false;
+    while(!encontrado){
+        pos= hash3(clave,colisiones);
+        if(tabla[pos].estado==LIBRE || tabla[pos].estado==DISPONIBLE){
+            encontrado = true;
+            tamalog++;
+            tabla[pos].dato=aeropuerto;
+            tabla[pos].clave=clave;
+            tabla[pos].estado=OCUPADA;
+            tabla[pos].iata=aeropuerto.getIata();
+        }
+    }
+
+}

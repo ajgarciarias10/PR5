@@ -16,6 +16,8 @@ using  namespace std;
  * @author Abraham Garcia Hurtado, agh00040@red.ujaen.es
  * @return
  */
+
+enum EstadoCelda {LIBRE,OCUPADA,DISPONIBLE};
 class ThashAerop {
 
 private:
@@ -29,19 +31,14 @@ private:
     int primoMen;
     //Definimos lo que tiene la tabla Hash
     class  Entrada{
-        private:
+        public:
             unsigned long  clave;
             Aeropuerto dato;
             string iata;
-            //enum dato de tipo constante que la utilizo en este caso para definir el estaod de las celdas
-                             // 0= ocupada 1 =libre 2= disponible
-            enum estadoCelda {ocupada,libre,disponible};
-            estadoCelda estado;
-
-        public:
-        Entrada():clave(0),iata(""),dato(Aeropuerto()),estado(libre){};
-        //Destructor
-        virtual ~Entrada(){};
+            EstadoCelda estado;
+            Entrada():clave(0),iata(""),dato(Aeropuerto()),estado(LIBRE){};
+            //Destructor
+            virtual ~Entrada(){};
     };
     //Definimos un vector que se llamara tabla
     vector<Entrada> tabla;
@@ -79,7 +76,7 @@ public:
 
     unsigned long djb2(unsigned char *str);
 
-    bool insertar
+    bool insertar(unsigned long clave, const Aeropuerto &aeropuerto);
 
 };
 
