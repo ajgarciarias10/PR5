@@ -15,14 +15,26 @@ ThashAerop::ThashAerop(const ThashAerop &origen): tamalog(origen.tamalog),tamafi
  * @brief Destructor
  */
 ThashAerop::~ThashAerop() {}
+
+/**
+ * @brief Funcion de dispersion cuadratica
+ * @param clave
+ * @param intento
+ * @return
+ */
+unsigned int ThashAerop::hash1(unsigned long clave, int intento) {
+    unsigned int hx;
+    hx = (clave+(intento*intento)) % tamafis;
+    return hx;
+}
 /**
  * @brief Funcion de dispersion doble
  * @param clave
  * @param intento
  * @return
  */
-unsigned  int ThashAerop::hash(unsigned long clave, int intento) {
-    unsigned   int h1x,h2x,hx;
+unsigned int ThashAerop::hash2(unsigned long clave, int intento) {
+    unsigned int h1x,h2x,hx;
     //Obtenemos la posicion del dato
     h1x = clave % tamafis;
     //Calculo q<que eltamaño en primMenor
@@ -33,8 +45,28 @@ unsigned  int ThashAerop::hash(unsigned long clave, int intento) {
     hx = (h1x + intento * h2x) % tamafis;
     //Devolvemos el calculo
     return  hx;
-    
 }
+
+/**
+ * @brief Funcion de dispersion doble 2
+ * @param clave
+ * @param intento
+ * @return
+ */
+unsigned int ThashAerop::hash3(unsigned long clave, int intento) {
+    unsigned int h1x,h2x,hx;
+    //Obtenemos la posicion del dato
+    h1x = clave % tamafis;
+    //Calculo q<que eltamaño en primMenor
+    //Todo por probar
+    //Esto para evitar agrupamientos primarios y secundario
+    h2x = (10+(clave % (primoMen)));
+    //Calculamos con la funcion de dispersion doble
+    hx = (h1x + intento * h2x) % tamafis;
+    //Devolvemos el calculo
+    return  hx;
+}
+
 /**
  * @brief Funcion para ver si un numero es primo
  * @param numero
@@ -80,3 +112,11 @@ ThashAerop::ThashAerop(int maxElementos, float lambda):tabla(tamafis,Entrada()),
     primoMen= qPrimoT(tamafis, true);
     
 }
+
+unsigned long ThashAerop:: djb2(unsigned char *str) {
+    unsigned long hash = 5381;
+    int c;
+    while (c = *str++) hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+    return hash;
+}
+

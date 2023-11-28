@@ -53,13 +53,19 @@ private:
     unsigned long max10;
     //suma de todas las colisiones
     unsigned long sumaColisiones;
-    //Funcion de dispersion doble
-    unsigned int hash(unsigned  long clave ,int intento);
+    unsigned long redisp;
+
     //Funcion para ver si es primo
     bool esPrimo(int numero);
     //Funcion q primo <t
     int qPrimoT(int tamanoFisico,bool menorOmayor);
 
+    //Funcion de dispersion cuadratica
+    unsigned int hash1(unsigned  long clave ,int intento);
+    //Funcion de dispersion doble
+    unsigned int hash2(unsigned  long clave ,int intento);
+    //Funcion de dispersion doble 2
+    unsigned int hash3(unsigned  long clave ,int intento);
 
 public:
     //Constructor por defecto
@@ -70,7 +76,10 @@ public:
     ThashAerop(int maxElementos, float lambda=0.7);
     //Destructor
     ~ThashAerop();
-    
+
+    unsigned long djb2(unsigned char *str);
+
+    bool insertar
 
 };
 
