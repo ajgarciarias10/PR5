@@ -126,6 +126,7 @@ bool ThashAerop::insertar(unsigned long clave, const Aeropuerto &aeropuerto) {
     bool encontrado= false;
     while(!encontrado){
         pos= hash3(clave,colisiones);
+        //si esta libre o disponible metemos el dato
         if(tabla[pos].estado==LIBRE || tabla[pos].estado==DISPONIBLE){
             encontrado = true;
             tamalog++;
@@ -133,7 +134,40 @@ bool ThashAerop::insertar(unsigned long clave, const Aeropuerto &aeropuerto) {
             tabla[pos].clave=clave;
             tabla[pos].estado=OCUPADA;
             tabla[pos].iata=aeropuerto.getIata();
+        }else{  //sino hay dos opciones, o que sea el mismo aeropuerto o que la casilla esta ocupada
+            if (tabla[pos].dato==aeropuerto)
+                return false;
+            //si esta ocupada colisiones++
+            else colisiones++;
         }
     }
+    //al terminar actualizamos los datos de la tabla
 
+    sumaColisiones+=colisiones;
+    if(colisiones<maxColisiones)
+        maxColisiones=colisiones;
+    if (colisiones>10)
+        max10++;
+
+
+    return encontrado;
+}
+
+bool ThashAerop::borrar(unsigned long clave, const std::string &iata) {
+    int colisiones=0;
+    int pos=0;
+    bool encontrado=false;
+    while (!encontrado){
+        pos= hash3(clave,colisiones);
+        if(tabla[pos].estado==OCUPADA && tabla[pos].iata==iata){
+            encontrado= true;
+            tabla[pos].estado=DISPONIBLE;
+            tamalog--;
+        }else{
+            if(tabla[pos].estado==LIBRE)
+                break;
+            else
+                colisiones++;
+        }
+    }
 }

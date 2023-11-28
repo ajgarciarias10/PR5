@@ -77,7 +77,7 @@ public:
     unsigned long djb2(unsigned char *str);
 
     bool insertar(unsigned long clave, const Aeropuerto &aeropuerto);
-
+    bool borrar(unsigned long clave, const std::string &id);
 };
 
 
