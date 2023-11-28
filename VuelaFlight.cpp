@@ -19,7 +19,7 @@ VuelaFlight::VuelaFlight() :aeropuertos(),routesOrig(),routesDest(),airlines() {
 #pragma region Mostrar tamaño de las estructuras de datos utilizadas
     cout<< "Tamaño Aerolineas: " << tamaAirlines() <<endl
         << "Tamaño aeropuertos: " << tamaAeropuertos() << endl
-        << "Tamaño rutas: " << tamaRutas() << endl
+        << "Tamaño rutas: " << tamaRutasOrig() << endl
         <<"Tamaño Vuelos: "<< tamaVuelos() << endl <<endl;
 #pragma  endregion
 }
@@ -42,18 +42,16 @@ VuelaFlight::~VuelaFlight() {
  * @return
  */
 Ruta &VuelaFlight::buscarRutasOriDeS(string idAerOrig, string idAerDest) {
-    list<Ruta>::iterator i;
-    //Recorremos todos los aeropuertos
-    for(i=rutas.begin(); i!=rutas.end();i++){
-        //Obtenemos los datos
-        string origenBusq = i->getOrigin()->getIata();
-        string destinoBusq = i->getDestination()->getIata();
-        //En caso de que se encuentre
-        if(origenBusq==idAerOrig && destinoBusq==idAerDest)
-            //Devolvemos el dato
-            return *i;
-    }
-    throw std::invalid_argument("La ruta no ha sido encontrado" "\n" "Intente cambiar su origen y destino" );
+    multimap<string,Ruta>::iterator origen;
+    origen=routesOrig.find(idAerOrig);
+    if(origen!=routesOrig.end()){
+        multimap<string,Ruta*>::iterator destino=routesDest.find(idAerDest);
+        for (; origen!=routesOrig.end(); ++origen) {
+            if (origen->second.getDestination()->getIata()==idAerDest)
+                return *(destino->second);
+        }
+    }else
+        throw invalid_argument("Error::buscarRutasOriDeS:No se ha encontrado la ruta");
 }
 /**
  * @brief BuscarRutasOrigen
@@ -107,11 +105,14 @@ vector<Aeropuerto * > VuelaFlight::buscarAeropuertoPais(string pais) {
  */
 void VuelaFlight::addNuevaRuta(Aeropuerto* AerOrig, Aeropuerto* AerDest, Aerolinea* aerolineaEncontrada) {
             //Añadimos las rutas ya con la aerolinea  y los aeropertos
-            rutas.push_back(Ruta(AerDest,AerOrig,aerolineaEncontrada));
-            //d. Obtener la dirección del objeto ruta recién insertado en la lista (en la última posición).
-            //e. Enlazar la aerolínea encontrada antes con la ruta anterior mediante
-            //Aerolinea::linkAerolRuta.
-            aerolineaEncontrada->linkAerolRuta(&(rutas.back()));
+    Ruta ruta(AerDest,AerOrig,aerolineaEncontrada);
+    pair<string,Ruta> orig(AerOrig->getIata(),ruta);
+    pair<string,Ruta*> dest(AerDest->getIata(),&ruta);
+
+    routesOrig.insert(orig);
+    routesDest.insert(dest);
+   //este ns lo que hay que hacer, esta hecho provisional
+    aerolineaEncontrada->linkAerolRuta(&(ruta));
 
 }
 
@@ -233,10 +234,17 @@ long VuelaFlight::tamaAeropuertos() {
     return aeropuertos.size();
 }
 /**
- * @brief Metodo que devuelve el tamaño de la lista de rutas
+ * @brief Metodo que devuelve el tamaño de la lista de rutas de origen
  */
-long VuelaFlight::tamaRutas() {
-    return rutas.size();
+long VuelaFlight::tamaRutasOrig() {
+    return routesOrig.size();
+}
+
+/**
+ * @brief Metodo que devuelve el tamaño de la lista de rutas de destino
+ */
+long VuelaFlight::tamaRutasDest() {
+    return routesDest.size();
 }
 /**
  * @brief Metodo que devuelve el tamaño del arbol
@@ -519,18 +527,18 @@ set<string > VuelaFlight::buscaVuelosDestAerop(string paisOrig, string iataAeroD
  * @return
  */
 list<Ruta *> VuelaFlight::buscarRutasPaisOrig(string pOrig) {
-    list<Ruta>::iterator i;
+    multimap<string,Ruta>::iterator i;
     list<Ruta *> lista;
     //Recorremos todos los aeropuertos
-    for(i=rutas.begin(); i!=rutas.end();i++){
+    for(i=routesOrig.begin(); i!=routesOrig.end();i++){
         //Obtenemos los datos
-        string origenBusq = i->getOrigin()->getIsoPais();
+        string origenBusq = i->second.getOrigin()->getIsoPais();
         //En caso de que se encuentre
         if(origenBusq==pOrig){
             //Devolvemos el dato
 
             //El iterador no es como un puntero y entonces lo que hacemos es devolver el dato * y su direccion &
-            lista.push_back(&(*i));
+            lista.push_back(&(i->second));
         }
     }
     return  lista;

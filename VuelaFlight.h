@@ -70,8 +70,10 @@ public:
     void ordenarAeropuertos();
     //Devuelve el tamaño de aeropuertos
     long tamaAeropuertos ();
-    //Devuelve el tamaño de rutas
-    long tamaRutas();
+    //Devuelve el tamaño de rutas de origen
+    long tamaRutasOrig();
+    //Devuelve el tamaño de rutas de destino
+    long tamaRutasDest();
     //Devuelve el tamaño del Arbol
     long tamaAirlines();
     //Metodo para registrar un vuelo
