@@ -2,7 +2,7 @@
 /**
  * @brief VuelaFlight
  */
-VuelaFlight::VuelaFlight() :aeropuertos(),rutas(),airlines() {
+VuelaFlight::VuelaFlight() :aeropuertos(),routesOrig(),routesDest(),airlines() {
 #pragma region Carga aeropuertos
     cargaAeropuertos();
 #pragma endregion
@@ -28,7 +28,8 @@ VuelaFlight::VuelaFlight() :aeropuertos(),rutas(),airlines() {
  * @param vector
  * @param ruta
  */
-VuelaFlight::VuelaFlight(vector<Aeropuerto> aeropuerto, list<Ruta> ruta ,map<string,Aerolinea> airlines):aeropuertos(aeropuerto),rutas(ruta),airlines(airlines) {}
+VuelaFlight::VuelaFlight(vector<Aeropuerto> aeropuerto, multimap<string,Ruta> rutasorig, multimap<string,Ruta*> rutasdes ,map<string,Aerolinea> airlines):
+aeropuertos(aeropuerto),airlines(airlines),routesDest(rutasdes),routesOrig(rutasorig) {}
 /**
  * @brief Destructor
  */
@@ -60,17 +61,17 @@ Ruta &VuelaFlight::buscarRutasOriDeS(string idAerOrig, string idAerDest) {
  * @return
  */
 list<Ruta *> VuelaFlight::buscarRutasOrigen(string idAerOrig) {
-    list<Ruta>::iterator i;
+    multimap<string,Ruta>::iterator i;
     list<Ruta *> lista;
     //Recorremos todos los aeropuertos
-    for(i=rutas.begin(); i!=rutas.end();i++){
+    for(i=routesOrig.begin(); i!=routesOrig.end();i++){
         //Obtenemos los datos
-        string origenBusq = i->getOrigin()->getIata();
+        string origenBusq = i->second.getOrigin()->getIata();
         //En caso de que se encuentre
         if(origenBusq==idAerOrig){
             //Devolvemos el dato
             //El iterador no es como un puntero y entonces lo que hacemos es devolver el dato * y su direccion &
-            lista.push_back(&(*i));
+            lista.push_back(&(i->second));
         }
     }
     return  lista;
@@ -119,7 +120,7 @@ void VuelaFlight::addNuevaRuta(Aeropuerto* AerOrig, Aeropuerto* AerDest, Aerolin
  * @param vl
  */
 
-VuelaFlight::VuelaFlight(const VuelaFlight &vl) : aeropuertos(vl.aeropuertos), rutas(vl.rutas),airlines(vl.airlines){}
+VuelaFlight::VuelaFlight(const VuelaFlight &vl) : aeropuertos(vl.aeropuertos), routesDest(vl.routesDest),routesOrig(vl.routesOrig),airlines(vl.airlines){}
 /**
  * @brief Añade aeropuerto
  * @param aeropuerto

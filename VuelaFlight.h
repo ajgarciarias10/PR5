@@ -33,7 +33,8 @@ private:
     void cargarRutas();
     //Declaramos los metodo publicos y constructores
     vector<Aeropuerto> aeropuertos;
-    list<Ruta> rutas;
+    multimap<string,Ruta> routesOrig;
+    multimap<string,Ruta*> routesDest;
     map<string,Aerolinea> airlines;
 public:
     //Constructor por defecto
@@ -41,7 +42,7 @@ public:
     //Constructor copia
     VuelaFlight(const VuelaFlight &vl);
     //Constructor parametrizado
-    VuelaFlight(vector<Aeropuerto> aeropuerto, list<Ruta> ruta ,map<string,Aerolinea> airlines);
+    VuelaFlight(vector<Aeropuerto> aeropuerto, multimap<string,Ruta> rutasorig, multimap<string,Ruta*> rutasdes ,map<string,Aerolinea> airlines);
     //Destructor VuelaFlight
     ~VuelaFlight();
     //Metodos que tenemos que utilizar en esta practica
