@@ -81,6 +81,11 @@ public:
     Aeropuerto* buscar(unsigned long clave, const std::string &id);
 
     unsigned long numElementos();
+    unsigned int nMaxColisiones();
+    unsigned int numMax10();
+    unsigned int promedioColisiones();
+    float factorCarga();
+    void mostrarEstadoTabla();
 };
 
 

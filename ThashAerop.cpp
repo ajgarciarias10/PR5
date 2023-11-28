@@ -195,3 +195,5 @@ Aeropuerto *ThashAerop::buscar(unsigned long clave, const std::string &iata) {
 unsigned long ThashAerop::numElementos() {
     return tamlog;
 }
+
+ThashAerop::
