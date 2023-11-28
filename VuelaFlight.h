@@ -5,6 +5,7 @@
 #include <deque>
 #include <map>
 #include <set>
+#include "ThashAerop.h"
 #include "time.h"
 #include <iostream>
 #include <fstream>
@@ -32,7 +33,7 @@ private:
     //Metodo para cargarRutas
     void cargarRutas();
     //Declaramos los metodo publicos y constructores
-    vector<Aeropuerto> aeropuertos;
+    ThashAerop airports;
     multimap<string,Ruta> routesOrig;
     multimap<string,Ruta*> routesDest;
     map<string,Aerolinea> airlines;

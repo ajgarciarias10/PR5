@@ -80,14 +80,8 @@ list<Ruta *> VuelaFlight::buscarRutasOrigen(string idAerOrig) {
 vector<Aeropuerto * > VuelaFlight::buscarAeropuertoPais(string pais) {
     //Donde lo vamos a meter
     vector<Aeropuerto*> encontrado;
-    //Recorremos el tamaño fisico
-    for (int i = 0; i < aeropuertos.size(); ++i) {
-        if(aeropuertos[i].getIsoPais() == pais){
-            //Insertamso el vector de aeropuertos
-            //Insertamos la direccion del vector ya que con los corchetes accedemos al dato pero tenemos que poner donde esta
-            encontrado.push_back(&(aeropuertos[i]));
-        }
-    }
+
+
     return  encontrado;
 
 
