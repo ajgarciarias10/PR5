@@ -78,6 +78,9 @@ public:
 
     bool insertar(unsigned long clave, const Aeropuerto &aeropuerto);
     bool borrar(unsigned long clave, const std::string &id);
+    Aeropuerto* buscar(unsigned long clave, const std::string &id);
+
+    unsigned long numElementos();
 };
 
 

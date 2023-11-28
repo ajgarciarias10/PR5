@@ -142,13 +142,13 @@ bool ThashAerop::insertar(unsigned long clave, const Aeropuerto &aeropuerto) {
         }
     }
     //al terminar actualizamos los datos de la tabla
-
     sumaColisiones+=colisiones;
+
     if(colisiones<maxColisiones)
         maxColisiones=colisiones;
+
     if (colisiones>10)
         max10++;
-
 
     return encontrado;
 }
@@ -161,13 +161,37 @@ bool ThashAerop::borrar(unsigned long clave, const std::string &iata) {
         pos= hash3(clave,colisiones);
         if(tabla[pos].estado==OCUPADA && tabla[pos].iata==iata){
             encontrado= true;
+            //cambiamos el estado a disponible
             tabla[pos].estado=DISPONIBLE;
             tamalog--;
         }else{
-            if(tabla[pos].estado==LIBRE)
-                break;
+            if(tabla[pos].estado==LIBRE) //si esta LIBRE significa que no se han metido datos posteriormente
+                return false;
             else
                 colisiones++;
         }
     }
+    return encontrado;
+}
+
+Aeropuerto *ThashAerop::buscar(unsigned long clave, const std::string &iata) {
+    int colisiones=0;
+    int pos=0;
+    bool encontrado=false;
+    while (!encontrado){
+        pos= hash3(clave,colisiones);
+        if(tabla[pos].estado==OCUPADA && tabla[pos].iata==iata){
+            encontrado= true;
+            return &tabla[pos].dato;
+        }else{
+            if(tabla[pos].estado==LIBRE) //si esta LIBRE significa que no se han metido datos posteriormente
+                return nullptr;
+            else
+                colisiones++;
+        }
+    }
+}
+
+unsigned long ThashAerop::numElementos() {
+    return tamlog;
 }
