@@ -63,18 +63,12 @@ list<Ruta *> VuelaFlight::buscarRutasOrigen(string idAerOrig) {
     list<Ruta *> lista;
     //Recorremos todos los aeropuertos
     for(i=routesOrig.begin(); i!=routesOrig.end();i++){
-        //Obtenemos los datos
-        string origenBusq = i->second.getOrigin()->getIata();
         //En caso de que se encuentre
-        if(origenBusq==idAerOrig){
-            //Devolvemos el dato
-            //El iterador no es como un puntero y entonces lo que hacemos es devolver el dato * y su direccion &
-            lista.push_back(&(i->second));
+        if(i->second.getOrigin()->getIata()==idAerOrig){
+            lista.push_back(&((*i).second));
         }
     }
     return  lista;
-
-
 }
 
 /**
