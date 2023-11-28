@@ -43,14 +43,23 @@ private:
         //Destructor
         virtual ~Entrada(){};
     };
-    //Definimos un vector que se llamara contenido tabla
+    //Definimos un vector que se llamara tabla
     vector<Entrada> tabla;
+    unsigned long tamfis;
+    unsigned long tamlog;
+    //numero del intento con mas colisiones
+    unsigned long maxColisiones;
+    //numero de intentos que superan las 10 colisiones
+    unsigned long max10;
+    //suma de todas las colisiones
+    unsigned long sumaColisiones;
     //Funcion de dispersion doble
     unsigned int hash(unsigned  long clave ,int intento);
     //Funcion para ver si es primo
     bool esPrimo(int numero);
     //Funcion q primo <t
     int qPrimoT(int tamanoFisico,bool menorOmayor);
+
 
 public:
     //Constructor por defecto

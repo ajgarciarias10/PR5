@@ -4,13 +4,13 @@
 
 #include "ThashAerop.h"
 ThashAerop::ThashAerop(): tamalog(0),tamafis(0),nCols(0),nMax10Cols(0),
-                          nMaxCols(0),tmRedisp(0),contTabla(0),primoMen(0) {}
+                          nMaxCols(0),tmRedisp(0),tabla(0),primoMen(0) {}
 /**
  * @brief Constructor copia
  * @param origen
  */
 ThashAerop::ThashAerop(const ThashAerop &origen): tamalog(origen.tamalog),tamafis(origen.tamafis),nCols(origen.nCols),nMax10Cols(origen.nMax10Cols),
-                                                    nMaxCols(origen.nMaxCols),tmRedisp(origen.tmRedisp),contTabla(origen.contTabla),primoMen(origen.primoMen){}
+                                                    nMaxCols(origen.nMaxCols),tmRedisp(origen.tmRedisp),tabla(origen.tabla),primoMen(origen.primoMen){}
 /**
  * @brief Destructor
  */
@@ -74,7 +74,7 @@ int ThashAerop::qPrimoT(int tamanoFisico,bool menorOmayor) {
     }
 }
 
-ThashAerop::ThashAerop(int maxElementos, float lambda):contTabla(tamafis,Entrada()),tamalog(0),tamafis(0),nCols(0),nMax10Cols(0),
+ThashAerop::ThashAerop(int maxElementos, float lambda):tabla(tamafis,Entrada()),tamalog(0),tamafis(0),nCols(0),nMax10Cols(0),
                                                        nMaxCols(0),tmRedisp(0){
     tamafis = qPrimoT(maxElementos/lambda, false);
     primoMen= qPrimoT(tamafis, true);
