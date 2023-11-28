@@ -44,7 +44,7 @@ private:
         virtual ~Entrada(){};
     };
     //Definimos un vector que se llamara contenido tabla
-    vector<Entrada> contTabla;
+    vector<Entrada> tabla;
     //Funcion de dispersion doble
     unsigned int hash(unsigned  long clave ,int intento);
     //Funcion para ver si es primo
