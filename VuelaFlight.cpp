@@ -2,7 +2,7 @@
 /**
  * @brief VuelaFlight
  */
-VuelaFlight::VuelaFlight() :aeropuertos(),routesOrig(),routesDest(),airlines() {
+VuelaFlight::VuelaFlight() :airports(),routesOrig(),routesDest(),airlines() {
 #pragma region Carga aeropuertos
     cargaAeropuertos();
 #pragma endregion
@@ -28,8 +28,8 @@ VuelaFlight::VuelaFlight() :aeropuertos(),routesOrig(),routesDest(),airlines() {
  * @param vector
  * @param ruta
  */
-VuelaFlight::VuelaFlight(vector<Aeropuerto> aeropuerto, multimap<string,Ruta> rutasorig, multimap<string,Ruta*> rutasdes ,map<string,Aerolinea> airlines):
-aeropuertos(aeropuerto),airlines(airlines),routesDest(rutasdes),routesOrig(rutasorig) {}
+VuelaFlight::VuelaFlight(ThashAerop aeropuerto, multimap<string,Ruta> rutasorig, multimap<string,Ruta*> rutasdes ,map<string,Aerolinea> airlines):
+        airports(aeropuerto),airlines(airlines),routesDest(rutasdes),routesOrig(rutasorig) {}
 /**
  * @brief Destructor
  */
@@ -47,10 +47,10 @@ Ruta &VuelaFlight::buscarRutasOriDeS(string idAerOrig, string idAerDest) {
     if(origen!=routesOrig.end()){
         multimap<string,Ruta*>::iterator destino=routesDest.find(idAerDest);
         if(destino != routesDest.end())
-        for (; origen!=routesOrig.end(); ++origen) {
-            if (origen->second.getDestination()->getIata()==idAerDest)
-                return *(destino->second);
-        }
+            for (; origen!=routesOrig.end(); ++origen) {
+                if (origen->second.getDestination()->getIata()==idAerDest)
+                    return *(destino->second);
+            }
     }else
         throw invalid_argument("Error::buscarRutasOriDeS:No se ha encontrado la ruta");
 }
@@ -93,14 +93,14 @@ vector<Aeropuerto * > VuelaFlight::buscarAeropuertoPais(string pais) {
  * @param aerolinea
  */
 void VuelaFlight::addNuevaRuta(Aeropuerto* AerOrig, Aeropuerto* AerDest, Aerolinea* aerolineaEncontrada) {
-            //Añadimos las rutas ya con la aerolinea  y los aeropertos
+    //Añadimos las rutas ya con la aerolinea  y los aeropertos
     Ruta ruta(AerDest,AerOrig,aerolineaEncontrada);
     pair<string,Ruta> orig(AerOrig->getIata(),ruta);
     pair<string,Ruta*> dest(AerDest->getIata(),&ruta);
 
     routesOrig.insert(orig);
     routesDest.insert(dest);
-   //este ns lo que hay que hacer, esta hecho provisional
+    //este ns lo que hay que hacer, esta hecho provisional
     aerolineaEncontrada->linkAerolRuta(&(ruta));
 
 }
@@ -110,15 +110,14 @@ void VuelaFlight::addNuevaRuta(Aeropuerto* AerOrig, Aeropuerto* AerDest, Aerolin
  * @param vl
  */
 
-VuelaFlight::VuelaFlight(const VuelaFlight &vl) : aeropuertos(vl.aeropuertos), routesDest(vl.routesDest),routesOrig(vl.routesOrig),airlines(vl.airlines){}
+VuelaFlight::VuelaFlight(const VuelaFlight &vl) : airports(vl.airports), routesDest(vl.routesDest),routesOrig(vl.routesOrig),airlines(vl.airlines){}
 /**
  * @brief Añade aeropuerto
  * @param aeropuerto
  */
 
 void VuelaFlight::añadeAeropuerto(const Aeropuerto aeropuerto) {
-    aeropuertos.push_back(aeropuerto);
-
+    airports.insertar(airports.djb2( (unsigned  char*) aeropuerto.getIata().c_str()),aeropuerto);
 }
 /**
  * @brief Metodo AddAerolinea
@@ -190,37 +189,21 @@ void VuelaFlight::addRutas(string icaoRuta, string origen2, string destino2){
     map<string ,Aerolinea>::iterator aerolineaEncontrada= airlines.find(icaoRuta);
 #pragma  endregion
 #pragma region Buscar en tiempo logarítmico en  PR2 + añadir nueva ruta
-    //Declaro un aeropuerto
-    Aeropuerto aero;
-    //Seteo su iata de origen
-    aero.setIata(origen2);
-    //Compruebo la posicion dentro del vector dinamico en el que esta Tanto la ruta de origen con la de destino
-    //Y así descubro el aeropuerto ORIGEN
-    vector<Aeropuerto>::iterator  origen;
-    origen = std::lower_bound(aeropuertos.begin(), aeropuertos.end(),aero);
-    //Obtenemos la posicion iterada de destino
-    vector<Aeropuerto>::iterator  destino;
-    //Seteo su iata de destino
-    aero.setIata(destino2); 
-    //Y así descubro el aeropuerto destino
-    destino= std::lower_bound(aeropuertos.begin(), aeropuertos.end(),aero);;
-    if(&origen && &destino  && &aerolineaEncontrada){
+    //Buscamos el aeropuerto de origen
+    Aeropuerto *orig = airports.buscar(airports.djb2((unsigned  char*) origen2.c_str()),origen2);
+    //Buscamos el aeropuerto de destino
+    Aeropuerto *dest = airports.buscar(airports.djb2((unsigned  char*) destino2.c_str()),destino2);
+    if(&orig && &dest  && &aerolineaEncontrada){
         //Añadimos nueva ruta a partir del origen el destino y el icao
-        addNuevaRuta(&(*origen), &(*destino),&aerolineaEncontrada->second);
+        addNuevaRuta(&(*orig), &(*dest),&aerolineaEncontrada->second);
     }
 }
-/**
- * @brief Metodo que ordena los aeropuertos
- */
 
-void VuelaFlight::ordenarAeropuertos(){
-    sort(aeropuertos.begin(),aeropuertos.end());
-}
 /**
  * @brief Metodo que devuelve el tamaño del vector
  */
 long VuelaFlight::tamaAeropuertos() {
-    return aeropuertos.size();
+    return airports.numElementos();
 }
 /**
  * @brief Metodo que devuelve el tamaño de la lista de rutas de origen
@@ -245,14 +228,12 @@ bool VuelaFlight::registrarVuelo(std::string fNumber, std::string iataAeroOrig, 
     //Obtenemos la aeriolinea
     map<string,Aerolinea>::iterator mapaEncuentraVuelos = airlines.find(fNumber.substr(0,3));
     //Obtenemos el aeropuerto de orgigen y el de destino
-    Aeropuerto orig;
-    orig.setIata(iataAeroOrig);
-    vector<Aeropuerto>::iterator iteradorOrig = std::lower_bound(aeropuertos.begin(), aeropuertos.end(),orig);
-    Aeropuerto dest;
-    dest.setIata(iataAeroDest);
-    vector<Aeropuerto>::iterator iteradorDest= std::lower_bound(aeropuertos.begin(), aeropuertos.end(),dest);
-    if(mapaEncuentraVuelos!=airlines.end() && iteradorOrig!=aeropuertos.end() && iteradorDest!=aeropuertos.end()){
-        Vuelo v(fNumber,plane,datosMeteo,f,&(*iteradorOrig),&(*iteradorDest),&(mapaEncuentraVuelos->second));
+    //Buscamos el aeropuerto de origen
+    Aeropuerto *orig = airports.buscar(airports.djb2((unsigned  char*) iataAeroOrig.c_str()),iataAeroOrig);
+    //Buscamos el aeropuerto de destino
+    Aeropuerto *dest = airports.buscar(airports.djb2((unsigned  char*) iataAeroDest.c_str()),iataAeroDest);
+    if(mapaEncuentraVuelos!=airlines.end() && orig!= nullptr && dest!= nullptr){
+        Vuelo v(fNumber,plane,datosMeteo,f,&(*orig),&(*dest),&(mapaEncuentraVuelos->second));
         mapaEncuentraVuelos->second.addVuelo(v);
         return true;
     }
@@ -291,7 +272,7 @@ void VuelaFlight::cargarVuelos(string fichVuelos) {
                 getline(columnas, plane, ';');
                 getline(columnas, datoMeteo, ';');
                 getline(columnas, fecha, ';');
-                                                    //Posicion //Longuitud
+                //Posicion //Longuitud
                 int dia = stoi(fecha.substr(0, 2));
                 int mes = stoi(fecha.substr(3, 2));
                 int año = stoi(fecha.substr(6, 2));
@@ -319,17 +300,17 @@ void VuelaFlight::cargaAeropuertos() {
     ifstream is;
     stringstream  columnas;
     string fila;
-    #pragma region Aeropuerto valores
-        string id = "";
-        string iata = "";
-        string ident="";
-        string tipo="";
-        string nombre="";
-        string latitud_str="";
-        string longitud_str="";
-        string continente="";
-        string iso_pais="";
-    #pragma endregion
+#pragma region Aeropuerto valores
+    string id = "";
+    string iata = "";
+    string ident="";
+    string tipo="";
+    string nombre="";
+    string latitud_str="";
+    string longitud_str="";
+    string continente="";
+    string iso_pais="";
+#pragma endregion
     clock_t lecturaAero = clock();
     is.open("../aeropuertos_v2.csv"); //carpeta de proyecto
     if ( is.good() ) {
@@ -464,8 +445,8 @@ vector<Vuelo *> VuelaFlight::buscaVuelos(string fNumber) {
     vector<Vuelo*> vuelosADev;
     for (iteraAirlines = airlines.begin();iteraAirlines!=airlines.end(); ++iteraAirlines) {
         vector<Vuelo*> aux = iteraAirlines->second.getVuelos(fNumber);
-       //Concatenamos el vector
-      vuelosADev.insert(vuelosADev.end(),aux.begin(),aux.end());
+        //Concatenamos el vector
+        vuelosADev.insert(vuelosADev.end(),aux.begin(),aux.end());
     }
     return vuelosADev;
 }
@@ -479,7 +460,7 @@ vector<Vuelo *> VuelaFlight::vuelosOperadosPor(string icaoAerolinea, Fecha f) {
     map<string,Aerolinea>::iterator  iteraAirlines;
     vector<Vuelo*> vuelosADev;
     for (iteraAirlines = airlines.lower_bound(icaoAerolinea);iteraAirlines!=airlines.end(); ++iteraAirlines) {
-      vector<Vuelo*> aux = iteraAirlines->second.getVuelos(f,f);
+        vector<Vuelo*> aux = iteraAirlines->second.getVuelos(f,f);
         //Concatenamos el vector
         vuelosADev.insert(vuelosADev.end(),aux.begin(),aux.end());
     }
@@ -499,13 +480,13 @@ set<string > VuelaFlight::buscaVuelosDestAerop(string paisOrig, string iataAeroD
 
     //Recorremos las rutas
     list<Ruta*>::iterator itrutas = rutasAeropuertosdePaisOrigen.begin();
-        for (itrutas;itrutas!=rutasAeropuertosdePaisOrigen.end(); ++itrutas) {
-            if(iataAeroDest == (*itrutas)->getDestination()->getIata()){
-                    for (Vuelo *vuelo : (*itrutas)->getVuelos()) {
-                        identificadores.insert(vuelo->getFlightNumber());
-                    }
+    for (itrutas;itrutas!=rutasAeropuertosdePaisOrigen.end(); ++itrutas) {
+        if(iataAeroDest == (*itrutas)->getDestination()->getIata()){
+            for (Vuelo *vuelo : (*itrutas)->getVuelos()) {
+                identificadores.insert(vuelo->getFlightNumber());
             }
         }
+    }
 
     return  identificadores;
 
@@ -550,8 +531,8 @@ vector<Aeropuerto *> VuelaFlight::buscaAeropuertosAerolinea(string icaoAerolinea
     vVuelos = aaero.getFlights();
     itVuelos = vVuelos.begin();
     for (;itVuelos!=vVuelos.end();itVuelos++) {
-            setAeros.insert((*itVuelos)->getAirpOrigin());
-            setAeros.insert((*itVuelos)->getAirpDest());
+        setAeros.insert((*itVuelos)->getAirpOrigin());
+        setAeros.insert((*itVuelos)->getAirpDest());
     }
     for (Aeropuerto *aero : setAeros) {
         vAeroports.push_back(aero);

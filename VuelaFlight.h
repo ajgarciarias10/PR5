@@ -26,9 +26,9 @@ private:
     long int tamaVuelo= 0;
     //Metodo para cargarVuelos
     void  cargarVuelos(string fichVuelos);
-   //Metodo para cargarAeropuertos
+    //Metodo para cargarAeropuertos
     void cargaAeropuertos();
-   //Metodo para cargarAerolineas
+    //Metodo para cargarAerolineas
     void cargaAerolineas();
     //Metodo para cargarRutas
     void cargarRutas();
@@ -43,7 +43,7 @@ public:
     //Constructor copia
     VuelaFlight(const VuelaFlight &vl);
     //Constructor parametrizado
-    VuelaFlight(vector<Aeropuerto> aeropuerto, multimap<string,Ruta> rutasorig, multimap<string,Ruta*> rutasdes ,map<string,Aerolinea> airlines);
+    VuelaFlight(ThashAerop aeropuerto, multimap<string,Ruta> rutasorig, multimap<string,Ruta*> rutasdes ,map<string,Aerolinea> airlines);
     //Destructor VuelaFlight
     ~VuelaFlight();
     //Metodos que tenemos que utilizar en esta practica
