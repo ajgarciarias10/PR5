@@ -87,11 +87,9 @@ void VuelaFlight::addNuevaRuta(Aeropuerto* AerOrig, Aeropuerto* AerDest, Aerolin
     Ruta ruta(AerDest,AerOrig,aerolineaEncontrada);
     pair<string,Ruta> orig(AerOrig->getIata(),ruta);
     pair<string,Ruta*> dest(AerDest->getIata(),&ruta);
-
-    routesOrig.insert(orig);
+    //routesOrig.insert(orig);
     routesDest.insert(dest);
-    //este ns lo que hay que hacer, esta hecho provisional
-    aerolineaEncontrada->linkAerolRuta(&(ruta));
+    aerolineaEncontrada->linkAerolRuta(&(routesOrig.insert(orig))->second);
 
 }
 
@@ -178,7 +176,7 @@ void VuelaFlight::addRutas(string icaoRuta, string origen2, string destino2){
     Aeropuerto *orig = airports.buscar(airports.djb2((unsigned  char*) origen2.c_str()),origen2);
     //Buscamos el aeropuerto de destino
     Aeropuerto *dest = airports.buscar(airports.djb2((unsigned  char*) destino2.c_str()),destino2);
-    if(&orig && &dest  && &aerolineaEncontrada){
+    if(&orig && &dest  && aerolineaEncontrada!=airlines.end()){
         //Añadimos nueva ruta a partir del origen el destino y el icao
         addNuevaRuta(&(*orig), &(*dest),&aerolineaEncontrada->second);
     }
@@ -211,8 +209,9 @@ long VuelaFlight::tamaAirlines() {
 }
 bool VuelaFlight::registrarVuelo(std::string fNumber, std::string iataAeroOrig, std::string iataAeroDest,std::string plane, std::string datosMeteo, Fecha f) {
     //Obtenemos la aeriolinea
-    map<string,Aerolinea>::iterator mapaEncuentraVuelos = airlines.find(fNumber.substr(0,3));
-    //Obtenemos el aeropuerto de orgigen y el de destino
+    map<string,Aerolinea>::iterator mapaEncuentraVuelos;
+    mapaEncuentraVuelos=airlines.find(fNumber.substr(0,3));
+    //Obtenemos el aeropuerto de origen y el de destino
     //Buscamos el aeropuerto de origen
     Aeropuerto *orig = airports.buscar(airports.djb2((unsigned  char*) iataAeroOrig.c_str()),iataAeroOrig);
     //Buscamos el aeropuerto de destino
@@ -225,8 +224,6 @@ bool VuelaFlight::registrarVuelo(std::string fNumber, std::string iataAeroOrig, 
     else{
         return  false;
     }
-
-
 }
 /**
  * @brief Metodo para cargar Vuelos pasandole un ficheroVuelos

@@ -191,8 +191,6 @@ Vuelo* Aerolinea::addVuelo(Vuelo &v) {
     pair<string,Vuelo> par(v.getFlightNumber(),v);
     //Insertamos el par y obtenemos la direccion de memoria del insetado
     Vuelo* nV= &(flights.insert(par)->second);
-    //Comprobamos si pertenece a alguna ruta de la propia aerolinea
-    //Recorremos las rutas de la aerolinea
     for (int i = 0; i < aerorutas.size(); ++i) {
         if(aerorutas[i]->getOrigin()->getIata() == v.getAirpOrigin()->getIata() &&
            aerorutas[i]->getDestination()->getIata() == v.getAirpDest()->getIata() &&

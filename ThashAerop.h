@@ -16,7 +16,6 @@ using  namespace std;
  * @author Abraham Garcia Hurtado, agh00040@red.ujaen.es
  * @return
  */
-
 enum EstadoCelda {LIBRE,OCUPADA,DISPONIBLE};
 class ThashAerop {
 
