@@ -81,7 +81,7 @@ public:
     unsigned int numMax10();
     float promedioColisiones();
     float factorCarga();
-    void mostrarEstadoTabla();
+    unsigned  long tamTabla();
 };
 
 

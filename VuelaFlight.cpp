@@ -87,7 +87,6 @@ void VuelaFlight::addNuevaRuta(Aeropuerto* AerOrig, Aeropuerto* AerDest, Aerolin
     Ruta ruta(AerDest,AerOrig,aerolineaEncontrada);
     pair<string,Ruta> orig(AerOrig->getIata(),ruta);
     pair<string,Ruta*> dest(AerDest->getIata(),&ruta);
-    //routesOrig.insert(orig);
     routesDest.insert(dest);
     aerolineaEncontrada->linkAerolRuta(&(routesOrig.insert(orig))->second);
 

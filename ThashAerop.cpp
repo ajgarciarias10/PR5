@@ -220,6 +220,6 @@ float ThashAerop::factorCarga(){
     return (float)tamlog/tamfis;
 }
 
-void ThashAerop::mostrarEstadoTabla(){
-
+unsigned long ThashAerop::tamTabla(){
+   return tamfis;
 }
