@@ -82,7 +82,8 @@ bool ThashAerop::esPrimo(int numero) {
             i++;
         }
         return true;
-    }
+    }else
+        return false;
 
 }
 /**

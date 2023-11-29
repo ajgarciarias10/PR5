@@ -54,7 +54,7 @@ public:
     //Buscar AeropuertoPais
     vector<Aeropuerto*> buscarAeropuertoPais(string pais);
     //AñadirNuevoAeropuerto
-    void añadeAeropuerto(const Aeropuerto aeropuerto);
+    void addAeropuerto(const Aeropuerto aeropuerto);
     //AñadirNuevaRuta
     void addNuevaRuta(Aeropuerto* AerOrig, Aeropuerto* AerDest, Aerolinea* aerolineaEncontrada);
     //Añade Aerolinea

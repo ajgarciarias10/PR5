@@ -3,25 +3,15 @@
  * @brief VuelaFlight
  */
 VuelaFlight::VuelaFlight() :airports(),routesOrig(),routesDest(),airlines() {
-#pragma region Carga aeropuertos
     cargaAeropuertos();
-#pragma endregion
-#pragma region  Carga Aerolineas
     cargaAerolineas();
-
-#pragma  endregion
-#pragma region Carga Ruta
     cargarRutas();
-#pragma endregion
-#pragma region Carga Vuelos
     cargarVuelos("../infovuelos_v1.csv");
-#pragma endregion
-#pragma region Mostrar tamaño de las estructuras de datos utilizadas
+
     cout<< "Tamaño Aerolineas: " << tamaAirlines() <<endl
         << "Tamaño aeropuertos: " << tamaAeropuertos() << endl
         << "Tamaño rutas: " << tamaRutasOrig() << endl
         <<"Tamaño Vuelos: "<< tamaVuelos() << endl <<endl;
-#pragma  endregion
 }
 /**
  * @brief Constructor parametrizado
@@ -42,17 +32,16 @@ VuelaFlight::~VuelaFlight() {
  * @return
  */
 Ruta &VuelaFlight::buscarRutasOriDeS(string idAerOrig, string idAerDest) {
-    multimap<string,Ruta>::iterator origen;
-    origen=routesOrig.find(idAerOrig);
+    multimap<string,Ruta>::iterator origen=routesOrig.find(idAerOrig);
     if(origen!=routesOrig.end()){
-        multimap<string,Ruta*>::iterator destino=routesDest.find(idAerDest);
-        if(destino != routesDest.end())
-            for (; origen!=routesOrig.end(); ++origen) {
-                if (origen->second.getDestination()->getIata()==idAerDest)
-                    return *(destino->second);
-            }
-    }else
-        throw invalid_argument("Error::buscarRutasOriDeS:No se ha encontrado la ruta");
+        for ( ; origen!=routesOrig.end() ; origen++) {
+            if (origen->second.getOrigin()->getIata()==idAerOrig &&
+            origen->second.getDestination()->getIata()==idAerDest)
+                return *(&origen->second);
+        }
+    }
+
+    throw invalid_argument("Error::buscarRutasOriDeS:No se ha encontrado la ruta");
 }
 /**
  * @brief BuscarRutasOrigen
@@ -116,7 +105,7 @@ VuelaFlight::VuelaFlight(const VuelaFlight &vl) : airports(vl.airports), routesD
  * @param aeropuerto
  */
 
-void VuelaFlight::añadeAeropuerto(const Aeropuerto aeropuerto) {
+void VuelaFlight::addAeropuerto(const Aeropuerto aeropuerto) {
     airports.insertar(airports.djb2( (unsigned  char*) aeropuerto.getIata().c_str()),aeropuerto);
 }
 /**
@@ -292,10 +281,12 @@ void VuelaFlight::cargarVuelos(string fichVuelos) {
  * @brief Metodo que carga los Aeropuertos
  */
 void VuelaFlight::cargaAeropuertos() {
+    clock_t lecturaAero = clock();
+
     ifstream is;
     stringstream  columnas;
     string fila;
-#pragma region Aeropuerto valores
+
     string id = "";
     string iata = "";
     string ident="";
@@ -305,8 +296,7 @@ void VuelaFlight::cargaAeropuertos() {
     string longitud_str="";
     string continente="";
     string iso_pais="";
-#pragma endregion
-    clock_t lecturaAero = clock();
+
     is.open("../aeropuertos_v2.csv"); //carpeta de proyecto
     if ( is.good() ) {
         while (getline(is, fila)) {
@@ -325,37 +315,33 @@ void VuelaFlight::cargaAeropuertos() {
                 //  Transformamos la latitud y longitud a float
                 fila = "";
                 columnas.clear();
-                //Insertamos en el Vector Dinamico el Aeropuerto
-                añadeAeropuerto(Aeropuerto(id,iata,tipo,nombre,continente,iso_pais, UTM(stof(latitud_str),stof(longitud_str))));
-
-
+                //Insertamos en la tabla hash
+                addAeropuerto(Aeropuerto(id,iata,tipo,nombre,continente,iso_pais, UTM(stof(latitud_str),stof(longitud_str))));
             }
         }
         //Tras leer ordenamos el vector por Codigo Iata
-        ordenarAeropuertos();
         is.close();
     }else{
         std::cout << "Error de apertura en archivo" << std::endl;
     }
     std::cout << "Tiempo lectura de aeropuertos: " << ((clock() - lecturaAero) / (float) CLOCKS_PER_SEC) << " segs." << std::endl;
-
-
 }
 /**
  * @brief Metodo que cargaLasAerolineas
  */
 void VuelaFlight::cargaAerolineas() {
+    clock_t lecturaAerolineas = clock();
+
     ifstream is;
     stringstream  columnas;
     string fila;
-#pragma  region Aerolinea valores
+
     string idAerolineaStr;
     string icao = "";
     string nombreAero="";
     string pais="";
     string activo="";
-#pragma endregion
-    clock_t lecturaAerolineas = clock();
+
     is.open("../aerolineas_v1.csv"); //carpeta de proyecto
     if(is.good()){
         while (getline(is, fila)){
@@ -382,21 +368,21 @@ void VuelaFlight::cargaAerolineas() {
     }
     is.close();
     std::cout << "Tiempo lectura de las aerolineas: " << ((clock() - lecturaAerolineas) / (float) CLOCKS_PER_SEC) << " segs." << std::endl;
-
 }
 /**
  * @brief Metodo que cargaLasRutas
  */
 void VuelaFlight::cargarRutas() {
+    clock_t lecturaRutas = clock();
+
     ifstream is;
     stringstream  columnas;
     string fila;
-#pragma region Valores Rutas
+
     string icaoRuta = "";
     string  origen2 = "";
     string destino2 = "";
-#pragma endregion
-    clock_t lecturaRutas = clock();
+
     is.open("../rutas_v1.csv"); //carpeta de proyecto
     if ( is.good() ) {
         while (getline(is, fila)) {
@@ -419,8 +405,6 @@ void VuelaFlight::cargarRutas() {
 
     is.close();
     std::cout << "Tiempo lectura de las rutas: " << ((clock() - lecturaRutas) / (float) CLOCKS_PER_SEC) << " segs." << std::endl;
-
-
 }
 /**
  * @brief Devuelve el tamaño de los vuelos
