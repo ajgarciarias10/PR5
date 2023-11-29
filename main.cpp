@@ -5,13 +5,13 @@ int main() {
     VuelaFlight vuelaFlight;
     vuelaFlight.mostrarEstadoTabla();
     try {
-        vuelaFlight.eliminarAeropuertoInactivo();
-        vuelaFlight.mostrarEstadoTabla();
         vuelaFlight.eliminarAeropuerto("00AS");
-
+        vuelaFlight.mostrarEstadoTabla();
     }catch (invalid_argument &e){
         e.what();
     }
+
+
 
      return 0;
 }
