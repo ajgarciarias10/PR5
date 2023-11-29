@@ -1,6 +1,8 @@
 #include <iostream>
+#include "VuelaFlight.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    VuelaFlight vuelaFlight;
+
     return 0;
 }

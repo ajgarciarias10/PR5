@@ -3,9 +3,9 @@
  * @brief VuelaFlight
  */
 VuelaFlight::VuelaFlight() :airports(),routesOrig(),routesDest(),airlines() {
-    cargaAeropuertos();
-    cargaAerolineas();
-    cargarRutas();
+    cargaAeropuertos("../aeropuertos_v3.csv");
+    cargaAerolineas("../aerolineas_v1.csv");
+    cargarRutas("../rutas_v1.csv");
     cargarVuelos("../infovuelos_v1.csv");
 
     cout<< "Tamaño Aerolineas: " << tamaAirlines() <<endl
@@ -232,18 +232,19 @@ bool VuelaFlight::registrarVuelo(std::string fNumber, std::string iataAeroOrig, 
  * @param fichVuelos
  */
 void VuelaFlight::cargarVuelos(string fichVuelos) {
+    clock_t lecturaRutas = clock();
+
     ifstream is;
     stringstream  columnas;
     string fila;
-#pragma region Valores Vuelos
+
     string flightnumber = "";
     string  departurePlane = "";
     string  arrivalPlane = "";
     string plane = "";
     string datoMeteo = "";
     string fecha = "";
-#pragma endregion
-    clock_t lecturaRutas = clock();
+
     is.open(fichVuelos); //carpeta de proyecto
     if ( is.good() ) {
         while (getline(is, fila)) {
@@ -280,7 +281,7 @@ void VuelaFlight::cargarVuelos(string fichVuelos) {
 /**
  * @brief Metodo que carga los Aeropuertos
  */
-void VuelaFlight::cargaAeropuertos() {
+void VuelaFlight::cargaAeropuertos(string fichAeropuertos) {
     clock_t lecturaAero = clock();
 
     ifstream is;
@@ -297,7 +298,7 @@ void VuelaFlight::cargaAeropuertos() {
     string continente="";
     string iso_pais="";
 
-    is.open("../aeropuertos_v2.csv"); //carpeta de proyecto
+    is.open(fichAeropuertos); //carpeta de proyecto
     if ( is.good() ) {
         while (getline(is, fila)) {
             //¿Se ha leído una nueva fila?
@@ -329,7 +330,7 @@ void VuelaFlight::cargaAeropuertos() {
 /**
  * @brief Metodo que cargaLasAerolineas
  */
-void VuelaFlight::cargaAerolineas() {
+void VuelaFlight::cargaAerolineas(string fichAerolineas) {
     clock_t lecturaAerolineas = clock();
 
     ifstream is;
@@ -342,7 +343,7 @@ void VuelaFlight::cargaAerolineas() {
     string pais="";
     string activo="";
 
-    is.open("../aerolineas_v1.csv"); //carpeta de proyecto
+    is.open(fichAerolineas); //carpeta de proyecto
     if(is.good()){
         while (getline(is, fila)){
             //¿Se ha leído una nueva fila?
@@ -372,7 +373,7 @@ void VuelaFlight::cargaAerolineas() {
 /**
  * @brief Metodo que cargaLasRutas
  */
-void VuelaFlight::cargarRutas() {
+void VuelaFlight::cargarRutas(string fichRutas) {
     clock_t lecturaRutas = clock();
 
     ifstream is;
@@ -383,7 +384,7 @@ void VuelaFlight::cargarRutas() {
     string  origen2 = "";
     string destino2 = "";
 
-    is.open("../rutas_v1.csv"); //carpeta de proyecto
+    is.open(fichRutas); //carpeta de proyecto
     if ( is.good() ) {
         while (getline(is, fila)) {
             //¿Se ha leído una nueva fila?

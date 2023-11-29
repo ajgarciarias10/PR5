@@ -27,11 +27,11 @@ private:
     //Metodo para cargarVuelos
     void  cargarVuelos(string fichVuelos);
     //Metodo para cargarAeropuertos
-    void cargaAeropuertos();
+    void cargaAeropuertos(string fichAeropuertos);
     //Metodo para cargarAerolineas
-    void cargaAerolineas();
+    void cargaAerolineas(string fichAerolineas);
     //Metodo para cargarRutas
-    void cargarRutas();
+    void cargarRutas(string fichRutas);
     //Declaramos los metodo publicos y constructores
     ThashAerop airports;
     multimap<string,Ruta> routesOrig;
