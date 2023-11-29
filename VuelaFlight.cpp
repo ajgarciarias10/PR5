@@ -125,7 +125,6 @@ void VuelaFlight::añadeAeropuerto(const Aeropuerto aeropuerto) {
  */
 void VuelaFlight::addAerolinea(string icao,Aerolinea aerolinea) {
     airlines.insert( pair<string , Aerolinea>(icao,aerolinea));
-
 }
 /**
  * @brief Metodo Buscar Aerolinea por Icao
@@ -140,7 +139,6 @@ Aerolinea &VuelaFlight::buscaAerolinea(std::string icaoAerolinea) {
     }
     //Devolvemos en caso contrario si la ha encontrado
     return  it->second;
-
 }
 /**
  * @brief Metodo que busca las Aerolineas Activas
@@ -157,9 +155,7 @@ vector<Aerolinea*> VuelaFlight::buscaAerolineasActiva() {
             aeroActivas.push_back(&(itBuscaAerolinea->second));
         }
     }
-
     return  aeroActivas;
-
 }
 /**
  * @brief Metodo que busca la Aerolinea por el pais
@@ -175,7 +171,6 @@ vector<Aerolinea*> VuelaFlight::getAerolineasPais(std::string idPais) {
             aerolineaPais.push_back(&(itBuscaAero->second));
         }
     }
-
     return  aerolineaPais;
 }
 /**

@@ -21,15 +21,7 @@ enum EstadoCelda {LIBRE,OCUPADA,DISPONIBLE};
 class ThashAerop {
 
 private:
-    //Tamaño del vector sin signo long el entero mas grande
-    //Numero de colisiones
-    //Numero maximo de colisiones
-    //Maximo numero de intentos
-    //Tamaño redispersion
-    unsigned long int tamalog,tamafis,nCols,nMaxCols,nMax10Cols,tmRedisp;
-    //Primo menor
-    int primoMen;
-    //Definimos lo que tiene la tabla Hash
+    //Definimos la entrada de la tablaHash
     class  Entrada{
         public:
             unsigned long  clave;
@@ -42,14 +34,19 @@ private:
     };
     //Definimos un vector que se llamara tabla
     vector<Entrada> tabla;
+    //Tam fisico de la tabla(vector)
     unsigned long tamfis;
+    //Tam logico de la tabla(vector)
     unsigned long tamlog;
+    //Primo menor que lo usaremos para las funciones hash
+    int primoMen;
     //numero del intento con mas colisiones
     unsigned long maxColisiones;
     //numero de intentos que superan las 10 colisiones
     unsigned long max10;
     //suma de todas las colisiones
     unsigned long sumaColisiones;
+    //numero de redispersion
     unsigned long redisp;
 
     //Funcion para ver si es primo
