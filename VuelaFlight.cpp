@@ -86,9 +86,10 @@ void VuelaFlight::addNuevaRuta(Aeropuerto* AerOrig, Aeropuerto* AerDest, Aerolin
     //Añadimos las rutas ya con la aerolinea  y los aeropertos
     Ruta ruta(AerDest,AerOrig,aerolineaEncontrada);
     pair<string,Ruta> orig(AerOrig->getIata(),ruta);
-    pair<string,Ruta*> dest(AerDest->getIata(),&ruta);
+    Ruta* r=&routesOrig.insert(orig)->second;
+    pair<string,Ruta*> dest(AerDest->getIata(),r);
     routesDest.insert(dest);
-    aerolineaEncontrada->linkAerolRuta(&(routesOrig.insert(orig))->second);
+    aerolineaEncontrada->linkAerolRuta(r);
 
 }
 
@@ -552,12 +553,6 @@ void VuelaFlight::eliminarAeropuerto(string IATA) {
        }
     }
 
-    multimap<string,Ruta*>::iterator  itRutasDest;
-    for (itRutasDest = routesDest.begin(); itRutasDest!= routesDest.end() ; ++itRutasDest) {
-        if(itRutasDest->second->getDestination()->getIata() == IATA) {
-            routesDest.erase(itRutasDest);
-        }
-    }
     if(!airports.borrar(airports.djb2((unsigned  char*) IATA.c_str()),IATA )){
         throw invalid_argument("Se cagó encima el borrado");
     }
