@@ -64,7 +64,8 @@ public:
     //Constructor por defecto
     ThashAerop();
     //Constructor copia
-    ThashAerop(const ThashAerop &origen);
+    ThashAerop(const ThashAerop &orig);
+    ThashAerop &operator=(const ThashAerop &orig);
     //Constructor que construye la tabla garantizando un factor de carga determinado
     ThashAerop(int maxElementos, float lambda=0.7);
     //Destructor

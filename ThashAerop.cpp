@@ -9,9 +9,29 @@ ThashAerop::ThashAerop(): tamlog(0),tamfis(0),sumaColisiones(0),max10(0),
  * @brief Constructor copia
  * @param origen
  */
-ThashAerop::ThashAerop(const ThashAerop &origen): tamlog(origen.tamlog),tamfis(origen.tamfis),sumaColisiones(origen.sumaColisiones),max10(origen.max10),
-                                                    maxColisiones(origen.maxColisiones),redisp(origen.redisp),tabla(origen.tabla),primoMen(origen.primoMen){
+ThashAerop::ThashAerop(const ThashAerop &orig): tamlog(orig.tamlog),tamfis(orig.tamfis),sumaColisiones(orig.sumaColisiones),max10(orig.max10),
+                                                    maxColisiones(orig.maxColisiones),redisp(orig.redisp),tabla(orig.tabla),primoMen(orig.primoMen){
 }
+
+/**
+ * @brief operator= de ThashAerop
+ * @param orig
+ * @return *this
+ */
+ThashAerop &ThashAerop::operator=(const ThashAerop &orig) {
+    if(this!=&orig){
+        tamlog=orig.tamlog;
+        tamfis=orig.tamfis;
+        maxColisiones=orig.maxColisiones;
+        max10=orig.max10;
+        sumaColisiones=orig.sumaColisiones;
+        redisp=orig.redisp;
+        primoMen=orig.primoMen;
+        tabla=orig.tabla;
+    }
+    return *this;
+}
+
 /**
  * @brief Constructor inicializador
  * @param maxElementos
@@ -151,7 +171,7 @@ bool ThashAerop::insertar(unsigned long clave, const Aeropuerto &aeropuerto) {
     //al terminar actualizamos los datos de la tabla
     sumaColisiones+=colisiones;
 
-    if(colisiones<maxColisiones)
+    if(colisiones>maxColisiones)
         maxColisiones=colisiones;
 
     if (colisiones>10)

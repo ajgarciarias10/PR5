@@ -78,6 +78,7 @@ public:
     //Metodo para obtener el numero de los vuelos
     long int getNumVuelos();
     vector<Vuelo*>getFlights();
+    void bajaAeropuerto(string IATAAirport);
 };
 
 

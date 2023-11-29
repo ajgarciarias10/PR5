@@ -515,3 +515,44 @@ vector<Aeropuerto *> VuelaFlight::buscaAeropuertosAerolinea(string icaoAerolinea
     }
     return vAeroports;
 }
+/**
+ * @brief Metodo que muestra el estado de la tabla
+ */
+void VuelaFlight::mostrarEstadoTabla() {
+    cout<<"------------ESTADO DE LA TABLA HASH------------"<<endl;
+    cout<<"El numero maximo de colisiones es: "<<airports.nMaxColisiones()<<endl;
+    cout<<"El numero de veces que se superan 10 colisiones es: "<<airports.numMax10()<<endl;
+    cout<<"El promedio de colisiones es: "<<airports.promedioColisiones()<<endl;
+    cout<<"El factor de carga es: "<<airports.factorCarga()<<endl;
+    cout<<"El tam de la tabla es: "<<airports.tamTabla()<<endl;
+
+}
+/**
+ * @brief Metodo que eliminaElAeropuerto
+ * @param IATA
+ */
+void VuelaFlight::eliminarAeropuerto(string IATA) {
+
+    map<string,Aerolinea>::iterator  itAerolinea;
+    for (itAerolinea = airlines.begin(); itAerolinea!= airlines.end() ; ++itAerolinea) {
+            itAerolinea->second.bajaAeropuerto(IATA);
+    }
+    multimap<string,Ruta>::iterator  itRutasOrigen;
+    for (itRutasOrigen = routesOrig.begin(); itRutasOrigen!= routesOrig.end() ; ++itRutasOrigen) {
+       if(itRutasOrigen->second.getOrigin()->getIata() == IATA) {
+           routesOrig.erase(itRutasOrigen);
+       }
+    }
+
+    multimap<string,Ruta*>::iterator  itRutasDest;
+    for (itRutasDest = routesDest.begin(); itRutasDest!= routesDest.end() ; ++itRutasDest) {
+        if(itRutasDest->second->getDestination()->getIata() == IATA) {
+            routesDest.erase(itRutasDest);
+        }
+    }
+    if(!airports.borrar(airports.djb2((unsigned  char*) IATA.c_str()),IATA )){
+        throw invalid_argument("Se cagó encima el borrado");
+    }
+
+
+}

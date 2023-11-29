@@ -257,6 +257,27 @@ vector<Vuelo*> Aerolinea::getFlights() {
     return pAdev;
 }
 
+void Aerolinea::bajaAeropuerto(string IATAAirport) {
+    multimap<string,Vuelo>::iterator  itVuelos;
+    if(flights.size() !=  0  && aerorutas.size() != 0 ) {
+        //Borramos el vuelo relacionado con el aeropuerto
+        for (itVuelos = flights.begin(); itVuelos != flights.end(); ++itVuelos) {
+            if (itVuelos->second.getAirpOrigin()->getIata() == IATAAirport ||
+                itVuelos->second.getAirpDest()->getIata() == IATAAirport) {
+                flights.erase(itVuelos);
+            }
+        }
+        //Borramos la ruta relacionada con ese aeropuerto
+        deque<Ruta *>::iterator itRutas;
+        for (itRutas = aerorutas.begin(); itRutas != aerorutas.end(); itRutas++) {
+            if ((*itRutas)->getOrigin()->getIata() == IATAAirport ||
+                (*itRutas)->getDestination()->getIata() == IATAAirport) {
+                aerorutas.erase(itRutas);
+            }
+        }
+    }
+}
+
 
 
 

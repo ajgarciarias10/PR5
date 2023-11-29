@@ -91,6 +91,10 @@ public:
     list<Ruta*>buscarRutasPaisOrig(string pOrig);
     //Metodo que buscaAeropuertosAerolineas por icao
     vector<Aeropuerto *>buscaAeropuertosAerolinea(string icaoAerolinea);
+    //Metodo que muestra el estado de la Tabla Hash
+    void mostrarEstadoTabla();
+    //Metodo que eliminarAeropuertos
+    void eliminarAeropuerto(string IATA);
 };
 
 
