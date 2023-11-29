@@ -10,7 +10,14 @@ ThashAerop::ThashAerop(): tamlog(0),tamfis(0),sumaColisiones(0),max10(0),
  * @param origen
  */
 ThashAerop::ThashAerop(const ThashAerop &origen): tamlog(origen.tamlog),tamfis(origen.tamfis),sumaColisiones(origen.sumaColisiones),max10(origen.max10),
-                                                    maxColisiones(origen.maxColisiones),redisp(origen.redisp),tabla(origen.tabla),primoMen(origen.primoMen){}
+                                                    maxColisiones(origen.maxColisiones),redisp(origen.redisp),tabla(origen.tabla),primoMen(origen.primoMen){
+}
+
+ThashAerop::ThashAerop(int maxElementos, float lambda):tamfis(qPrimoT(maxElementos/lambda, false)),tabla(tamfis,Entrada()),tamlog(0),sumaColisiones(0),max10(0),
+                                                       maxColisiones(0),redisp(0){
+    primoMen= qPrimoT(tamfis, true);
+}
+
 /**
  * @brief Destructor
  */
@@ -105,14 +112,6 @@ int ThashAerop::qPrimoT(int tamanoFisico,bool menorOmayor) {
         }
         return tamanoFisico;
     }
-}
-
-ThashAerop::ThashAerop(int maxElementos, float lambda):tabla(tamfis,Entrada()),tamlog(0),tamfis(0),sumaColisiones(0),max10(0),
-                                                       maxColisiones(0),redisp(0){
-
-    tamfis = qPrimoT(maxElementos/lambda, false);
-    primoMen= qPrimoT(tamfis, true);
-    
 }
 
 unsigned long ThashAerop:: djb2(unsigned char *str) {

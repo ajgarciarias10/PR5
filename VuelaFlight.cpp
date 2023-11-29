@@ -2,11 +2,12 @@
 /**
  * @brief VuelaFlight
  */
-VuelaFlight::VuelaFlight() :airports(),routesOrig(),routesDest(),airlines() {
-    cargaAeropuertos("../aeropuertos_v3.csv");
-    cargaAerolineas("../aerolineas_v1.csv");
-    cargarRutas("../rutas_v1.csv");
-    cargarVuelos("../infovuelos_v1.csv");
+VuelaFlight::VuelaFlight() :airports(76368,0.7),routesOrig(),routesDest(),airlines() {
+
+    cargaAeropuertos("aeropuertos_v3.csv");
+    cargaAerolineas("aerolineas_v1.csv");
+    cargarRutas("rutas_v1.csv");
+    cargarVuelos("infovuelos_v1.csv");
 
     cout<< "Tamaño Aerolineas: " << tamaAirlines() <<endl
         << "Tamaño aeropuertos: " << tamaAeropuertos() << endl
@@ -290,7 +291,6 @@ void VuelaFlight::cargaAeropuertos(string fichAeropuertos) {
 
     string id = "";
     string iata = "";
-    string ident="";
     string tipo="";
     string nombre="";
     string latitud_str="";
