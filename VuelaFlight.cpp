@@ -526,6 +526,7 @@ void VuelaFlight::mostrarEstadoTabla() {
     cout<<"El promedio de colisiones es: "<<airports.promedioColisiones()<<endl;
     cout<<"El factor de carga es: "<<airports.factorCarga()<<endl;
     cout<<"El tam de la tabla es: "<<airports.tamTabla()<<endl;
+    cout<<"La tabla tiene: "<<airports.getTamLog()<<" elementos"<<endl;
 
 }
 /**
@@ -569,12 +570,15 @@ Aeropuerto *VuelaFlight::buscaAeropuerto(string IATAAirport) {
 }
 
 void VuelaFlight::eliminarAeropuertoInactivo() {
+    cout<<"Eliminando inactivos: "<<endl;
     vector<Aeropuerto*> vaeropuerto=getAeropuertos();
     for (int i = 0; i < vaeropuerto.size(); ++i) {
         list<Ruta*> lista=buscarRutasOrigen(vaeropuerto[i]->getIata());
-        if (lista.size()==0)
-            eliminarAeropuerto(vaeropuerto[i]->getIata());
-
+        if (lista.empty()) {
+            //cout << i + 1 << endl;
+            //eliminarAeropuerto(vaeropuerto[i]->getIata());
+            airports.borrar(airports.djb2((unsigned  char*) vaeropuerto[i]->getIata().c_str()),vaeropuerto[i]->getIata() );
+        }
     }
 }
 

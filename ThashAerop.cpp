@@ -242,6 +242,10 @@ unsigned long ThashAerop::tamTabla(){
    return tamfis;
 }
 
+unsigned long ThashAerop::getTamLog() {
+    return tamlog;
+}
+
 vector<Aeropuerto*> ThashAerop::getAeros() {
     vector<Aeropuerto*> aeropuertos;
     for (int i = 0; i < tabla.size(); ++i) {

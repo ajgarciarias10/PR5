@@ -4,6 +4,7 @@
 #include "string"
 #include "Aeropuerto.h"
 #include "vector"
+#include <iostream>
 using  namespace std;
 #ifndef PR5_THASHAEROP_H
 #define PR5_THASHAEROP_H
@@ -94,6 +95,7 @@ public:
     float factorCarga();
     //Metodo en el que obtenemos el tamaño de la tabla
     unsigned  long tamTabla();
+    unsigned long getTamLog();
     //Devolvemos un vector
     vector<Aeropuerto*> getAeros();
 };
