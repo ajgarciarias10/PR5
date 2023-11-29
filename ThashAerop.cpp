@@ -71,7 +71,6 @@ unsigned int ThashAerop::hash2(unsigned long clave, int intento) {
     //Obtenemos la posicion del dato
     h1x = clave % tamfis;
     //Calculo q<que eltamaño en primMenor
-    //Todo por probar
     //Esto para evitar agrupamientos primarios y secundario
     h2x = primoMen -(clave%primoMen);
     //Calculamos con la funcion de dispersion doble
@@ -91,7 +90,6 @@ unsigned int ThashAerop::hash3(unsigned long clave, int intento) {
     //Obtenemos la posicion del dato
     h1x = clave % tamfis;
     //Calculo q<que eltamaño en primMenor
-    //Todo por probar
     //Esto para evitar agrupamientos primarios y secundario
     h2x = (10+(clave % (primoMen)));
     //Calculamos con la funcion de dispersion doble
@@ -242,4 +240,14 @@ float ThashAerop::factorCarga(){
 
 unsigned long ThashAerop::tamTabla(){
    return tamfis;
+}
+
+vector<Aeropuerto*> ThashAerop::getAeros() {
+    vector<Aeropuerto*> aeropuertos;
+    for (int i = 0; i < tabla.size(); ++i) {
+        if(tabla[i].estado == OCUPADA){
+            aeropuertos.push_back((tabla[i].getDato()));
+        }
+    };
+    return  aeropuertos;
 }

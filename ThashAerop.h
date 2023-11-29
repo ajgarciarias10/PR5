@@ -30,6 +30,10 @@ private:
             Entrada():clave(0),iata(""),dato(Aeropuerto()),estado(LIBRE){};
             //Destructor
             virtual ~Entrada(){};
+
+         Aeropuerto *getDato()  {
+            return &dato;
+        }
     };
     //Definimos un vector que se llamara tabla
     vector<Entrada> tabla;
@@ -70,19 +74,28 @@ public:
     ThashAerop(int maxElementos, float lambda=0.7);
     //Destructor
     ~ThashAerop();
-
+    //Metodo que crea una clave de dispersion
     unsigned long djb2(unsigned char *str);
-
+    //Metodo que inserta
     bool insertar(unsigned long clave, const Aeropuerto &aeropuerto);
+    //Metodo que borra
     bool borrar(unsigned long clave, const std::string &id);
+    //Metodo que busca
     Aeropuerto* buscar(unsigned long clave, const std::string &id);
-
+    //Metodo en el que obtenemos los numeros de elementos
     unsigned long numElementos();
+    //Metodo en el que obtenemos el numero maximo de colisiones
     unsigned int nMaxColisiones();
+    //Metodo en el que obtenemos el numero de veces que se superan las 10 colisiones
     unsigned int numMax10();
+    //Metodo que hace el promedio de colisiones
     float promedioColisiones();
+    //Metodo que obtenemos el factor de carga que hemos utilizado
     float factorCarga();
+    //Metodo en el que obtenemos el tamaño de la tabla
     unsigned  long tamTabla();
+    //Devolvemos un vector
+    vector<Aeropuerto*> getAeros();
 };
 
 

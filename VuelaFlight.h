@@ -95,6 +95,11 @@ public:
     void mostrarEstadoTabla();
     //Metodo que eliminarAeropuertos
     void eliminarAeropuerto(string IATA);
+    //Buscamos los Aeropuertos
+    Aeropuerto* buscaAeropuerto(string IATAAirport);
+    //Metodo obtiene una estructura de punteros de Aeroopuertos
+    vector<Aeropuerto*>getAeropuertos();
+    void eliminarAeropuertoInactivo();
 };
 
 

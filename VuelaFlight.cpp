@@ -559,3 +559,25 @@ void VuelaFlight::eliminarAeropuerto(string IATA) {
 
 
 }
+
+Aeropuerto *VuelaFlight::buscaAeropuerto(string IATAAirport) {
+    Aeropuerto* aeropuerto = airports.buscar(airports.djb2((unsigned  char*) IATAAirport.c_str()),IATAAirport);
+    if(aeropuerto){
+        return  aeropuerto;
+    }
+    return nullptr;
+}
+
+void VuelaFlight::eliminarAeropuertoInactivo() {
+    vector<Aeropuerto*> vaeropuerto=getAeropuertos();
+    for (int i = 0; i < vaeropuerto.size(); ++i) {
+        list<Ruta*> lista=buscarRutasOrigen(vaeropuerto[i]->getIata());
+        if (lista.size()==0)
+            eliminarAeropuerto(vaeropuerto[i]->getIata());
+
+    }
+}
+
+vector<Aeropuerto *> VuelaFlight::getAeropuertos() {
+    return  airports.getAeros();
+}
