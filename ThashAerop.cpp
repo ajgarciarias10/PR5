@@ -3,14 +3,14 @@
 //
 
 #include "ThashAerop.h"
-ThashAerop::ThashAerop(): tamalog(0),tamafis(0),nCols(0),nMax10Cols(0),
-                          nMaxCols(0),tmRedisp(0),tabla(0),primoMen(0) {}
+ThashAerop::ThashAerop(): tamlog(0),tamfis(0),sumaColisiones(0),max10(0),
+                          maxColisiones(0),redisp(0),tabla(0),primoMen(0) {}
 /**
  * @brief Constructor copia
  * @param origen
  */
-ThashAerop::ThashAerop(const ThashAerop &origen): tamalog(origen.tamalog),tamafis(origen.tamafis),nCols(origen.nCols),nMax10Cols(origen.nMax10Cols),
-                                                    nMaxCols(origen.nMaxCols),tmRedisp(origen.tmRedisp),tabla(origen.tabla),primoMen(origen.primoMen){}
+ThashAerop::ThashAerop(const ThashAerop &origen): tamlog(origen.tamlog),tamfis(origen.tamfis),sumaColisiones(origen.sumaColisiones),max10(origen.max10),
+                                                    maxColisiones(origen.maxColisiones),redisp(origen.redisp),tabla(origen.tabla),primoMen(origen.primoMen){}
 /**
  * @brief Destructor
  */
@@ -24,7 +24,7 @@ ThashAerop::~ThashAerop() {}
  */
 unsigned int ThashAerop::hash1(unsigned long clave, int intento) {
     unsigned int hx;
-    hx = (clave+(intento*intento)) % tamafis;
+    hx = (clave+(intento*intento)) % tamfis;
     return hx;
 }
 /**
@@ -36,13 +36,13 @@ unsigned int ThashAerop::hash1(unsigned long clave, int intento) {
 unsigned int ThashAerop::hash2(unsigned long clave, int intento) {
     unsigned int h1x,h2x,hx;
     //Obtenemos la posicion del dato
-    h1x = clave % tamafis;
+    h1x = clave % tamfis;
     //Calculo q<que eltamaño en primMenor
     //Todo por probar
     //Esto para evitar agrupamientos primarios y secundario
     h2x = primoMen -(clave%primoMen);
     //Calculamos con la funcion de dispersion doble
-    hx = (h1x + intento * h2x) % tamafis;
+    hx = (h1x + intento * h2x) % tamfis;
     //Devolvemos el calculo
     return  hx;
 }
@@ -56,13 +56,13 @@ unsigned int ThashAerop::hash2(unsigned long clave, int intento) {
 unsigned int ThashAerop::hash3(unsigned long clave, int intento) {
     unsigned int h1x,h2x,hx;
     //Obtenemos la posicion del dato
-    h1x = clave % tamafis;
+    h1x = clave % tamfis;
     //Calculo q<que eltamaño en primMenor
     //Todo por probar
     //Esto para evitar agrupamientos primarios y secundario
     h2x = (10+(clave % (primoMen)));
     //Calculamos con la funcion de dispersion doble
-    hx = (h1x + intento * h2x) % tamafis;
+    hx = (h1x + intento * h2x) % tamfis;
     //Devolvemos el calculo
     return  hx;
 }
@@ -74,22 +74,22 @@ unsigned int ThashAerop::hash3(unsigned long clave, int intento) {
  */
 bool ThashAerop::esPrimo(int numero) {
     int i=2;
-    //Para que sea primo tiene que ser distinto de 1 y de 0
-    if(numero <=1){
-        //Mientras el numero su resto no sea cero
-        //Buscare si es divisible
-        while (numero%i!=0){
+    if(numero>2){
+        while(i<numero){
+            if(numero%i==0){
+                return false;
+            }
             i++;
         }
-        return (i==numero);
+        return true;
     }
-    else {
-        return false;
-    }
+
 }
 /**
  * @brief Funcion donde obtienes el primo menor de la tabla
  * @param numero
+ * @post si el bool es true se calcula el primo menor
+ * @post si el bool es false se calcula el primo mayor
  * @return
  */
 int ThashAerop::qPrimoT(int tamanoFisico,bool menorOmayor) {
@@ -106,10 +106,11 @@ int ThashAerop::qPrimoT(int tamanoFisico,bool menorOmayor) {
     }
 }
 
-ThashAerop::ThashAerop(int maxElementos, float lambda):tabla(tamafis,Entrada()),tamalog(0),tamafis(0),nCols(0),nMax10Cols(0),
-                                                       nMaxCols(0),tmRedisp(0){
-    tamafis = qPrimoT(maxElementos/lambda, false);
-    primoMen= qPrimoT(tamafis, true);
+ThashAerop::ThashAerop(int maxElementos, float lambda):tabla(tamfis,Entrada()),tamlog(0),tamfis(0),sumaColisiones(0),max10(0),
+                                                       maxColisiones(0),redisp(0){
+
+    tamfis = qPrimoT(maxElementos/lambda, false);
+    primoMen= qPrimoT(tamfis, true);
     
 }
 
@@ -129,7 +130,7 @@ bool ThashAerop::insertar(unsigned long clave, const Aeropuerto &aeropuerto) {
         //si esta libre o disponible metemos el dato
         if(tabla[pos].estado==LIBRE || tabla[pos].estado==DISPONIBLE){
             encontrado = true;
-            tamalog++;
+            tamlog++;
             tabla[pos].dato=aeropuerto;
             tabla[pos].clave=clave;
             tabla[pos].estado=OCUPADA;
@@ -163,7 +164,7 @@ bool ThashAerop::borrar(unsigned long clave, const std::string &iata) {
             encontrado= true;
             //cambiamos el estado a disponible
             tabla[pos].estado=DISPONIBLE;
-            tamalog--;
+            tamlog--;
         }else{
             if(tabla[pos].estado==LIBRE) //si esta LIBRE significa que no se han metido datos posteriormente
                 return false;
@@ -205,7 +206,7 @@ unsigned int ThashAerop::numMax10(){
 }
 
 float ThashAerop::promedioColisiones(){
-    return (float)sumaColisiones/tamalog;
+    return (float)sumaColisiones/tamlog;
 }
 
 float ThashAerop::factorCarga(){
