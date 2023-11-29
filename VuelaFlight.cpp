@@ -575,7 +575,6 @@ void VuelaFlight::eliminarAeropuertoInactivo() {
     for (int i = 0; i < vaeropuerto.size(); ++i) {
         list<Ruta*> lista=buscarRutasOrigen(vaeropuerto[i]->getIata());
         if (lista.empty()) {
-            //cout << i + 1 << endl;
             //eliminarAeropuerto(vaeropuerto[i]->getIata());
             airports.borrar(airports.djb2((unsigned  char*) vaeropuerto[i]->getIata().c_str()),vaeropuerto[i]->getIata() );
         }
