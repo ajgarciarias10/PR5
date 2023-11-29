@@ -575,18 +575,10 @@ void VuelaFlight::eliminarAeropuertoInactivo() {
     for (int i = 0; i < vaeropuerto.size(); ++i) {
         multimap<string,Ruta>::iterator  itOrig;
         itOrig = routesOrig.find(vaeropuerto[i]->getIata());
-        multimap<string,Ruta*>::iterator  itDest;
-        itDest = routesDest.find(vaeropuerto[i]->getIata());
-        if(itOrig != routesOrig.end() || itDest != routesDest.end()){
-            list<Ruta*> lista=buscarRutasOrigen(vaeropuerto[i]->getIata());
-            if (lista.empty()) {
-                //eliminarAeropuerto(vaeropuerto[i]->getIata());
-                airports.borrar(airports.djb2((unsigned  char*) vaeropuerto[i]->getIata().c_str()),vaeropuerto[i]->getIata() );
-            }else
-                cout<<"SE QUEDA"<<i+1<<endl;
 
+        if( itOrig == routesOrig.end() || itDest == routesDest.end()){
+            airports.borrar(airports.djb2((unsigned  char*) vaeropuerto[i]->getIata().c_str()),vaeropuerto[i]->getIata() );
         }
-
     }
 }
 
