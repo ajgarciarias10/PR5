@@ -12,9 +12,15 @@ ThashAerop::ThashAerop(): tamlog(0),tamfis(0),sumaColisiones(0),max10(0),
 ThashAerop::ThashAerop(const ThashAerop &origen): tamlog(origen.tamlog),tamfis(origen.tamfis),sumaColisiones(origen.sumaColisiones),max10(origen.max10),
                                                     maxColisiones(origen.maxColisiones),redisp(origen.redisp),tabla(origen.tabla),primoMen(origen.primoMen){
 }
+/**
+ * @brief Constructor inicializador
+ * @param maxElementos
+ * @param lambda
+ */
 
-ThashAerop::ThashAerop(int maxElementos, float lambda):tamfis(qPrimoT(maxElementos/lambda, false)),tabla(tamfis,Entrada()),tamlog(0),sumaColisiones(0),max10(0),
-                                                       maxColisiones(0),redisp(0){
+ThashAerop::ThashAerop(int maxElementos, float lambda):tamlog(0),sumaColisiones(0),max10(0),maxColisiones(0),redisp(0){
+    tamfis= qPrimoT(maxElementos/lambda, false);
+    tabla.assign(tamfis,Entrada());
     primoMen= qPrimoT(tamfis, true);
 }
 
@@ -191,6 +197,7 @@ Aeropuerto *ThashAerop::buscar(unsigned long clave, const std::string &iata) {
                 colisiones++;
         }
     }
+    return nullptr;
 }
 
 unsigned long ThashAerop::numElementos() {

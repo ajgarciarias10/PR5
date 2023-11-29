@@ -217,7 +217,7 @@ bool VuelaFlight::registrarVuelo(std::string fNumber, std::string iataAeroOrig, 
     Aeropuerto *orig = airports.buscar(airports.djb2((unsigned  char*) iataAeroOrig.c_str()),iataAeroOrig);
     //Buscamos el aeropuerto de destino
     Aeropuerto *dest = airports.buscar(airports.djb2((unsigned  char*) iataAeroDest.c_str()),iataAeroDest);
-    if(mapaEncuentraVuelos!=airlines.end() && orig!= nullptr && dest!= nullptr){
+    if(mapaEncuentraVuelos!=airlines.end() && &orig!= nullptr && &dest!= nullptr){
         Vuelo v(fNumber,plane,datosMeteo,f,&(*orig),&(*dest),&(mapaEncuentraVuelos->second));
         mapaEncuentraVuelos->second.addVuelo(v);
         return true;
