@@ -537,6 +537,14 @@ void VuelaFlight::eliminarAeropuerto(string IATA) {
     for (itAerolinea = airlines.begin(); itAerolinea!= airlines.end() ; ++itAerolinea) {
             itAerolinea->second.bajaAeropuerto(IATA);
     }
+
+    multimap<string,Ruta*>::iterator  itRutasDest;
+    for (itRutasDest = routesDest.begin(); itRutasDest!= routesDest.end() ; ++itRutasDest) {
+        if(itRutasDest->second->getDestination()->getIata() == IATA ||
+                itRutasDest->second->getOrigin()->getIata() == IATA) {
+            routesDest.erase(itRutasDest);
+        }
+    }
     multimap<string,Ruta>::iterator  itRutasOrigen;
     for (itRutasOrigen = routesOrig.begin(); itRutasOrigen!= routesOrig.end() ; ++itRutasOrigen) {
        if(itRutasOrigen->second.getOrigin()->getIata() == IATA) {
