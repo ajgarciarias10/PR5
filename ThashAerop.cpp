@@ -189,6 +189,7 @@ bool ThashAerop::borrar(unsigned long clave, const std::string &iata) {
             //cambiamos el estado a disponible
             tabla[pos].estado=DISPONIBLE;
             tamlog--;
+            cout<<"Nuevo tam: "<<tamlog<<endl;
         }else{
             if(tabla[pos].estado==LIBRE) //si esta LIBRE significa que no se han metido datos posteriormente
                 return false;
