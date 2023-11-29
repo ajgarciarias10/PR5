@@ -2,7 +2,7 @@
 /**
  * @brief VuelaFlight
  */
-VuelaFlight::VuelaFlight() :airports(76368,0.7),routesOrig(),routesDest(),airlines() {
+VuelaFlight::VuelaFlight() : airports(76368,0.7),routesOrig(),routesDest(),airlines() {
 
     cargaAeropuertos("aeropuertos_v3.csv");
     cargaAerolineas("aerolineas_v1.csv");
