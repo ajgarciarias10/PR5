@@ -148,48 +148,36 @@ unsigned long ThashAerop:: djb2(unsigned char *str) {
 bool ThashAerop::insertar(unsigned long clave, const Aeropuerto &aeropuerto) {
     int colisiones=0;
     int pos;
-    bool encontrado= false;
-    while(!encontrado){
-        pos= hash3(clave,colisiones);
+    bool seEncontro= false;
+    while(!seEncontro){
+        //calculamos la posicion con una funcion hash
+        pos=hash2(clave,colisiones);
         //si esta libre o disponible metemos el dato
         if(tabla[pos].estado==LIBRE || tabla[pos].estado==DISPONIBLE){
-            encontrado = true;
+            seEncontro = true;
             tamlog++;
-            tabla[pos].dato=aeropuerto;
-            tabla[pos].clave=clave;
-            tabla[pos].estado=OCUPADA;
-            tabla[pos].iata=aeropuerto.getIata();
-        }else{  //sino hay dos opciones, o que sea el mismo aeropuerto o que la casilla esta ocupada
+            tabla[pos] = Entrada(clave,aeropuerto,aeropuerto.getIata(),OCUPADA);
+        }else{
             if (tabla[pos].dato==aeropuerto)
                 return false;
-            //si esta ocupada colisiones++
             else colisiones++;
         }
     }
-    //al terminar actualizamos los datos de la tabla
-    sumaColisiones+=colisiones;
-
-    if(colisiones>maxColisiones)
-        maxColisiones=colisiones;
-
-    if (colisiones>10)
-        max10++;
-
-    return encontrado;
+    actualizaColisiones(colisiones);
+    return seEncontro;
 }
 
 bool ThashAerop::borrar(unsigned long clave, const std::string &iata) {
     int colisiones=0;
-    int pos=0;
-    bool encontrado=false;
-    while (!encontrado){
-        pos= hash3(clave,colisiones);
+    int pos;
+    bool seEncontro=false;
+    while (!seEncontro){
+        pos=hash2(clave,colisiones);
         if(tabla[pos].estado==OCUPADA && tabla[pos].iata==iata){
-            encontrado= true;
+            seEncontro= true;
             //cambiamos el estado a disponible
             tabla[pos].estado=DISPONIBLE;
             tamlog--;
-            cout<<"Nuevo tam: "<<tamlog<<endl;
         }else{
             if(tabla[pos].estado==LIBRE) //si esta LIBRE significa que no se han metido datos posteriormente
                 return false;
@@ -197,17 +185,17 @@ bool ThashAerop::borrar(unsigned long clave, const std::string &iata) {
                 colisiones++;
         }
     }
-    return encontrado;
+    return seEncontro;
 }
 
 Aeropuerto *ThashAerop::buscar(unsigned long clave, const std::string &iata) {
     int colisiones=0;
-    int pos=0;
-    bool encontrado=false;
-    while (!encontrado){
-        pos= hash3(clave,colisiones);
+    int pos;
+    bool seEncontro=false;
+    while (!seEncontro){
+        pos=hash2(clave,colisiones);
         if(tabla[pos].estado==OCUPADA && tabla[pos].iata==iata){
-            encontrado= true;
+            seEncontro= true;
             return &tabla[pos].dato;
         }else{
             if(tabla[pos].estado==LIBRE) //si esta LIBRE significa que no se han metido datos posteriormente
@@ -255,4 +243,14 @@ vector<Aeropuerto*> ThashAerop::getAeros() {
         }
     };
     return  aeropuertos;
+}
+
+void ThashAerop::actualizaColisiones(int colisiones) {
+    sumaColisiones+=colisiones;
+
+    if(colisiones>maxColisiones)
+        maxColisiones=colisiones;
+
+    if (colisiones>10)
+        max10++;
 }

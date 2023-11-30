@@ -29,6 +29,7 @@ private:
             string iata;
             EstadoCelda estado;
             Entrada():clave(0),iata(""),dato(Aeropuerto()),estado(LIBRE){};
+            Entrada(unsigned  long  djb2 ,Aeropuerto aero, string iata , EstadoCelda estadoCelda):clave(djb2),iata(iata),dato(aero),estado(estadoCelda){};
             //Destructor
             virtual ~Entrada(){};
 
@@ -98,6 +99,8 @@ public:
     unsigned long getTamLog();
     //Devolvemos un vector
     vector<Aeropuerto*> getAeros();
+    //Metodo para actualizar las colisiones
+    void actualizaColisiones(int colisiones);
 };
 
 
