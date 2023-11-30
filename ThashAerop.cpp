@@ -243,7 +243,12 @@ vector<Aeropuerto*> ThashAerop::getAeros() {
         }
     };
     return  aeropuertos;
+
 }
+/**
+ * @brief Metodo que realiza las suma del numero de colisiones
+ * @param colisiones
+ */
 
 void ThashAerop::actualizaColisiones(int colisiones) {
     sumaColisiones+=colisiones;
@@ -253,4 +258,37 @@ void ThashAerop::actualizaColisiones(int colisiones) {
 
     if (colisiones>10)
         max10++;
+
+    //Apartado redispersion
+    if(factorCarga()> 0.7){
+        redispersar(tamfis*1.3);
+    }
+}
+/**
+ * @brief Metodo que redispersa el tamaño de la tabla si supera el factor de carga
+ * @param tam
+ */
+void ThashAerop::redispersar(unsigned int tam) {
+    //Pasamos los datos de aeropuertos a un vector auxiliar
+    vector<Entrada>vaux;
+    vaux.assign(tam,Entrada());
+    for (int i = 0; i < tabla.size() ; ++i) {
+        vaux.push_back(tabla[i]);
+    }
+    //Tras eso borramos todos los aeropuertos de tabla
+    tabla.erase(tabla.begin(),tabla.end());
+    //Asiganmos un nuevo tamaño a la tabla hash llamando al constructor
+    float nuevoLamda = (float)tamlog/tam;
+    ThashAerop tablaAuxiliar(tamlog, nuevoLamda);
+    //Pasamos los nuevos elementos a la nueva tabla ya redispersada
+    for (int i = 0; i < vaux.size(); ++i) {
+        tablaAuxiliar.insertar(vaux[i].clave,vaux[i].dato);
+    }
+    this->tabla=tablaAuxiliar.tabla;
+    this->tamfis=tablaAuxiliar.tamfis;
+    this->tamlog=tablaAuxiliar.tamlog;
+    this->primoMen=tablaAuxiliar.primoMen;
+    this->maxColisiones=tablaAuxiliar.maxColisiones;
+    this->sumaColisiones=tablaAuxiliar.sumaColisiones;
+    this->max10=tablaAuxiliar.max10;
 }

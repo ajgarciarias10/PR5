@@ -1,5 +1,6 @@
-CMakeFiles/PR5.dir/Ruta.cpp.obj: C:\Users\abrah\Desktop\PR5\Ruta.cpp \
- C:\Users\abrah\Desktop\PR5\Ruta.h \
+CMakeFiles/PR5.dir/Ruta.cpp.obj: \
+ C:\Users\AntonioJR\Nextcloud\UNIVERSIDAD\Segundo\PRIMER\ CUATRI\EEDD\PRACTICAS\PR5\Ruta.cpp \
+ C:\Users\AntonioJR\Nextcloud\UNIVERSIDAD\Segundo\PRIMER\ CUATRI\EEDD\PRACTICAS\PR5\Ruta.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/string \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/requires_hosted.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
@@ -97,7 +98,8 @@ CMakeFiles/PR5.dir/Ruta.cpp.obj: C:\Users\abrah\Desktop\PR5\Ruta.cpp \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uses_allocator.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uses_allocator_args.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tuple \
- C:\Users\abrah\Desktop\PR5\Aeropuerto.h C:/Users/abrah/Desktop/PR5/UTM.h \
+ C:\Users\AntonioJR\Nextcloud\UNIVERSIDAD\Segundo\PRIMER\ CUATRI\EEDD\PRACTICAS\PR5\Aeropuerto.h \
+ C:/Users/AntonioJR/Nextcloud/UNIVERSIDAD/Segundo/PRIMER\ CUATRI/EEDD/PRACTICAS/PR5/UTM.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/stdexcept \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/exception \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/exception_ptr.h \
@@ -112,7 +114,7 @@ CMakeFiles/PR5.dir/Ruta.cpp.obj: C:\Users\abrah\Desktop\PR5\Ruta.cpp \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tempbuf.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_algorithm_defs.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/execution_defs.h \
- C:\Users\abrah\Desktop\PR5\Aerolinea.h \
+ C:\Users\AntonioJR\Nextcloud\UNIVERSIDAD\Segundo\PRIMER\ CUATRI\EEDD\PRACTICAS\PR5\Aerolinea.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/vector \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_uninitialized.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_vector.h \
@@ -132,9 +134,10 @@ CMakeFiles/PR5.dir/Ruta.cpp.obj: C:\Users\abrah\Desktop\PR5\Ruta.cpp \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_map.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_multimap.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/erase_if.h \
- C:/Users/abrah/Desktop/PR5/Vuelo.h C:/Users/abrah/Desktop/PR5/fecha.h \
- C:/Users/abrah/Desktop/PR5/Aeropuerto.h \
- C:\Users\abrah\Desktop\PR5\fecha.h \
+ C:/Users/AntonioJR/Nextcloud/UNIVERSIDAD/Segundo/PRIMER\ CUATRI/EEDD/PRACTICAS/PR5/Vuelo.h \
+ C:/Users/AntonioJR/Nextcloud/UNIVERSIDAD/Segundo/PRIMER\ CUATRI/EEDD/PRACTICAS/PR5/fecha.h \
+ C:/Users/AntonioJR/Nextcloud/UNIVERSIDAD/Segundo/PRIMER\ CUATRI/EEDD/PRACTICAS/PR5/Aeropuerto.h \
+ C:\Users\AntonioJR\Nextcloud\UNIVERSIDAD\Segundo\PRIMER\ CUATRI\EEDD\PRACTICAS\PR5\fecha.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iostream \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ostream \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ios \

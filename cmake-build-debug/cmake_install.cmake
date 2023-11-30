@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/abrah/Desktop/PR5
+# Install script for directory: C:/Users/AntonioJR/Nextcloud/UNIVERSIDAD/Segundo/PRIMER CUATRI/EEDD/PRACTICAS/PR5
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/abrah/Desktop/PR5/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/AntonioJR/Nextcloud/UNIVERSIDAD/Segundo/PRIMER CUATRI/EEDD/PRACTICAS/PR5/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

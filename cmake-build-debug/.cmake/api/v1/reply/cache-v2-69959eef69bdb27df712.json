@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/abrah/Desktop/PR5/cmake-build-debug"
+			"value" : "c:/Users/AntonioJR/Nextcloud/UNIVERSIDAD/Segundo/PRIMER CUATRI/EEDD/PRACTICAS/PR5/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -643,7 +643,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/abrah/Desktop/PR5/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/AntonioJR/Nextcloud/UNIVERSIDAD/Segundo/PRIMER CUATRI/EEDD/PRACTICAS/PR5/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -715,7 +715,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/abrah/Desktop/PR5"
+			"value" : "C:/Users/AntonioJR/Nextcloud/UNIVERSIDAD/Segundo/PRIMER CUATRI/EEDD/PRACTICAS/PR5"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -759,7 +759,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/PROGRA~1/JETBRA~1/CLION2~2.2/bin/mingw/bin/mingw32-make.exe"
+			"value" : "C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -1335,7 +1335,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/abrah/Desktop/PR5/cmake-build-debug"
+			"value" : "C:/Users/AntonioJR/Nextcloud/UNIVERSIDAD/Segundo/PRIMER CUATRI/EEDD/PRACTICAS/PR5/cmake-build-debug"
 		},
 		{
 			"name" : "PR5_IS_TOP_LEVEL",
@@ -1359,7 +1359,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/abrah/Desktop/PR5"
+			"value" : "C:/Users/AntonioJR/Nextcloud/UNIVERSIDAD/Segundo/PRIMER CUATRI/EEDD/PRACTICAS/PR5"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",

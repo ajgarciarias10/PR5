@@ -9,7 +9,7 @@ int main() {
         VuelaFlight tabla068(0.68);
         VuelaFlight tabla065(0.65);
     #pragma endregion
-
+/*
          #pragma  region Prueba de Rendimiento 1
         vector<Aeropuerto*> aeros =  vuelaFlight.getAeropuertos();
         VuelaFlight prueba2(0.65);
@@ -32,12 +32,13 @@ int main() {
 
 
 #pragma endregion
+  */
     #pragma region Programa de prueba 2
         vuelaFlight.mostrarEstadoTabla();
         Aeropuerto* aeropuerto = vuelaFlight.buscaAeropuerto("00AS");
         if(aeropuerto){
-            cout<< "Nombre: " << aeropuerto->getNombre() <<  "IATA: " << aeropuerto->getIata()<<
-                "Pais: "<<  aeropuerto->getIsoPais()  <<endl;
+            cout<< "Nombre: " << aeropuerto->getNombre() <<  " IATA: " << aeropuerto->getIata()<<
+                " Pais: "<<  aeropuerto->getIsoPais()  <<endl;
             vuelaFlight.eliminarAeropuerto("00AS");
             Aeropuerto* aeropuerto2 = vuelaFlight.buscaAeropuerto("00AS");
             if(!aeropuerto2){
@@ -47,13 +48,17 @@ int main() {
                vuelaFlight.mostrarEstadoTabla();
                vuelaFlight.eliminarAeropuertoInactivo();
                vuelaFlight.mostrarEstadoTabla();
-          //puta mierda
             }
         }
         else {
             cout << "No existe" << endl;
         }
     #pragma endregion
+#pragma  region Redispersion
+        cout<<endl<<"---------------REDISPERSION---------------"<<endl;
+        VuelaFlight tabla01(0.75);
+       // vuelaFlight.mostrarEstadoTabla();
+#pragma  endregion
     }catch (invalid_argument &e){
         e.what();
     }
