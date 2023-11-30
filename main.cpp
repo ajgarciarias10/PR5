@@ -4,17 +4,13 @@
 int main() {
     try {
         VuelaFlight vuelaFlight;
-        cout<<endl<<"Estado tabla tras cargar los datos: ";
-        vuelaFlight.mostrarEstadoTabla();
-        vuelaFlight.eliminarAeropuerto("00AS");
-        cout<<endl<<"Estado tabla tras elimnar el aeropuerto 00AS";
-        vuelaFlight.mostrarEstadoTabla();
-        vuelaFlight.eliminarAeropuertoInactivo();
-        cout<<endl<<"Estado tabla tras eliminar aeropuertos inactivos";
-        vuelaFlight.mostrarEstadoTabla();
+
+    #pragma region Entrenamiento
         VuelaFlight tabla068(0.68);
         VuelaFlight tabla065(0.65);
-    #pragma  region Prueba de Rendimiento 1
+    #pragma endregion
+
+         #pragma  region Prueba de Rendimiento 1
         vector<Aeropuerto*> aeros =  vuelaFlight.getAeropuertos();
         VuelaFlight prueba2(0.65);
         clock_t tiempoprueba2= clock();
@@ -30,14 +26,34 @@ int main() {
             lista_prueba2.push_back(aeros[i]);
         }
         for (int i = 0; i < 1000000; ++i) {
-            std::find(lista_prueba2.begin(), lista_prueba2.end(),aeros[(rand()%aeros.size())]);
+            std::lower_bound(lista_prueba2.begin(), lista_prueba2.end(),aeros[(rand()%aeros.size())]);
         }
         std::cout << "Tiempo lectura de la prueba 2 con lista: " << ((clock() - tiempoprueba2lista) / (float) CLOCKS_PER_SEC) << " segs." << std::endl;
 
 
 #pragma endregion
-
-
+    #pragma region Programa de prueba 2
+        vuelaFlight.mostrarEstadoTabla();
+        Aeropuerto* aeropuerto = vuelaFlight.buscaAeropuerto("00AS");
+        if(aeropuerto){
+            cout<< "Nombre: " << aeropuerto->getNombre() <<  "IATA: " << aeropuerto->getIata()<<
+                "Pais: "<<  aeropuerto->getIsoPais()  <<endl;
+            vuelaFlight.eliminarAeropuerto("00AS");
+            Aeropuerto* aeropuerto2 = vuelaFlight.buscaAeropuerto("00AS");
+            if(!aeropuerto2){
+               cout<< " Ha sido borrado con exito " <<endl;
+               cout << "Realizando reinserccion del aeropuerto"<<endl;
+               vuelaFlight.addAeropuerto(*aeropuerto);
+               vuelaFlight.mostrarEstadoTabla();
+               vuelaFlight.eliminarAeropuertoInactivo();
+               vuelaFlight.mostrarEstadoTabla();
+          //puta mierda
+            }
+        }
+        else {
+            cout << "No existe" << endl;
+        }
+    #pragma endregion
     }catch (invalid_argument &e){
         e.what();
     }
