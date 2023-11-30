@@ -100,6 +100,8 @@ public:
     //Metodo obtiene una estructura de punteros de Aeroopuertos
     vector<Aeropuerto*>getAeropuertos();
     void eliminarAeropuertoInactivo();
+    VuelaFlight(float fcarga,int nElementos=76368);
+
 };
 
 

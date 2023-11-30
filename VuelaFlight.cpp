@@ -520,7 +520,7 @@ vector<Aeropuerto *> VuelaFlight::buscaAeropuertosAerolinea(string icaoAerolinea
  * @brief Metodo que muestra el estado de la tabla
  */
 void VuelaFlight::mostrarEstadoTabla() {
-    cout<<"------------ESTADO DE LA TABLA HASH------------"<<endl;
+    cout<<endl<<"------------ESTADO DE LA TABLA HASH CON FACTOR DE CARGA: "<<airports.factorCarga()<<" ------------"<<endl;
     cout<<"El numero maximo de colisiones es: "<<airports.nMaxColisiones()<<endl;
     cout<<"El numero de veces que se superan 10 colisiones es: "<<airports.numMax10()<<endl;
     cout<<"El promedio de colisiones es: "<<airports.promedioColisiones()<<endl;
@@ -586,4 +586,10 @@ void VuelaFlight::eliminarAeropuertoInactivo() {
 
 vector<Aeropuerto *> VuelaFlight::getAeropuertos() {
     return  airports.getAeros();
+}
+
+
+VuelaFlight::VuelaFlight(float fcarga,int nElementos): airports(nElementos,fcarga),routesDest(),routesOrig(),airlines(){
+    cargaAeropuertos("aeropuertos_v3.csv");
+    mostrarEstadoTabla();
 }
