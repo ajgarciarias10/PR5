@@ -151,7 +151,7 @@ bool ThashAerop::insertar(unsigned long clave, const Aeropuerto &aeropuerto) {
     bool seEncontro= false;
     while(!seEncontro){
         //calculamos la posicion con una funcion hash
-        pos=hash2(clave,colisiones);
+        pos=hash3(clave,colisiones);
         //si esta libre o disponible metemos el dato
         if(tabla[pos].estado==LIBRE || tabla[pos].estado==DISPONIBLE){
             seEncontro = true;
@@ -172,7 +172,7 @@ bool ThashAerop::borrar(unsigned long clave, const std::string &iata) {
     int pos;
     bool seEncontro=false;
     while (!seEncontro){
-        pos=hash2(clave,colisiones);
+        pos=hash3(clave,colisiones);
         if(tabla[pos].estado==OCUPADA && tabla[pos].iata==iata){
             seEncontro= true;
             //cambiamos el estado a disponible
@@ -193,7 +193,7 @@ Aeropuerto *ThashAerop::buscar(unsigned long clave, const std::string &iata) {
     int pos;
     bool seEncontro=false;
     while (!seEncontro){
-        pos=hash2(clave,colisiones);
+        pos=hash3(clave,colisiones);
         if(tabla[pos].estado==OCUPADA && tabla[pos].iata==iata){
             seEncontro= true;
             return &tabla[pos].dato;
@@ -260,9 +260,9 @@ void ThashAerop::actualizaColisiones(int colisiones) {
         max10++;
 
     //Apartado redispersion
-    if(factorCarga()> 0.7){
-        redispersar(tamfis*1.3);
-    }
+   // if(factorCarga()> 0.7){
+   //     redispersar(tamfis*1.3);
+   // }
 }
 /**
  * @brief Metodo que redispersa el tamaño de la tabla si supera el factor de carga
