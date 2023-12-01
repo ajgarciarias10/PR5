@@ -91,7 +91,7 @@ unsigned int ThashAerop::hash3(unsigned long clave, int intento) {
     h1x = clave % tamfis;
     //Calculo q<que eltamaño en primMenor
     //Esto para evitar agrupamientos primarios y secundario
-    h2x = (10+(clave % (primoMen)));
+    h2x = (1+(clave % (primoMen)));
     //Calculamos con la funcion de dispersion doble
     hx = (h1x + intento * h2x) % tamfis;
     //Devolvemos el calculo
