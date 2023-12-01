@@ -262,6 +262,7 @@ void ThashAerop::actualizaColisiones(int colisiones) {
     //Apartado redispersion
     if(factorCarga()> 0.7){
         redispersar(tamfis*1.3);
+        redisp++;
     }
 }
 /**
@@ -294,4 +295,8 @@ void ThashAerop::redispersar(unsigned int tam) {
     for (int i = 0; i < vaux.size(); ++i) {
         insertar(vaux[i].clave,vaux[i].dato);
     }
+}
+
+unsigned long ThashAerop::getRedisp() {
+    return redisp;
 }

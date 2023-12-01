@@ -527,6 +527,7 @@ void VuelaFlight::mostrarEstadoTabla() {
     cout<<"El factor de carga es: "<<airports.factorCarga()<<endl;
     cout<<"El tam de la tabla es: "<<airports.tamTabla()<<endl;
     cout<<"La tabla tiene: "<<airports.getTamLog()<<" elementos"<<endl;
+    cout<<"La tabla ha sido redispersada: "<<airports.getRedisp()<<" veces"<<endl;
 
 }
 /**

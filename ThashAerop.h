@@ -103,7 +103,7 @@ public:
     void actualizaColisiones(int colisiones);
     //Metodo que redispersion cuando la tahla supera lamdba 0.7
     void redispersar(unsigned tam);
-
+    unsigned long getRedisp();
 };
 
 
