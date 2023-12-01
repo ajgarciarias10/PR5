@@ -49,9 +49,8 @@ int main() {
                    cout<<"La tabla sin aeropuertos inactivos: "<<endl;
                    vuelaFlight.mostrarEstadoTabla();
                 }
-            }
-            else {
-                cout << "No existe" << endl;
+            }else {
+                cout << "No existe el aeropuerto 00AS" << endl;
             }
         #pragma endregion
     #pragma  region Redispersion
