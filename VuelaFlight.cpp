@@ -570,7 +570,6 @@ Aeropuerto *VuelaFlight::buscaAeropuerto(string IATAAirport) {
 }
 
 void VuelaFlight::eliminarAeropuertoInactivo() {
-    cout<<"Eliminando inactivos: "<<endl;
     vector<Aeropuerto*> vaeropuerto=getAeropuertos();
     for (int i = 0; i < vaeropuerto.size(); ++i) {
         multimap<string,Ruta*>::iterator  itDest;

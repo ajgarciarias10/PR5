@@ -53,10 +53,10 @@ RM = "C:\Program Files\JetBrains\CLion 2023.2.2\bin\cmake\win\x64\bin\cmake.exe"
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\AntonioJR\Nextcloud\UNIVERSIDAD\Segundo\PRIMER CUATRI\EEDD\PRACTICAS\PR5"
+CMAKE_SOURCE_DIR = C:\Users\abrah\Desktop\PR5
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\AntonioJR\Nextcloud\UNIVERSIDAD\Segundo\PRIMER CUATRI\EEDD\PRACTICAS\PR5\cmake-build-debug"
+CMAKE_BINARY_DIR = C:\Users\abrah\Desktop\PR5\cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -80,14 +80,14 @@ clean: CMakeFiles/PR5.dir/clean
 CMakeFiles/PR5.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PR5.dir\build.make CMakeFiles/PR5.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PR5.dir\build.make CMakeFiles/PR5.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="C:\Users\AntonioJR\Nextcloud\UNIVERSIDAD\Segundo\PRIMER CUATRI\EEDD\PRACTICAS\PR5\cmake-build-debug\CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target PR5"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\abrah\Desktop\PR5\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target PR5"
 .PHONY : CMakeFiles/PR5.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/PR5.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\AntonioJR\Nextcloud\UNIVERSIDAD\Segundo\PRIMER CUATRI\EEDD\PRACTICAS\PR5\cmake-build-debug\CMakeFiles" 10
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\abrah\Desktop\PR5\cmake-build-debug\CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/PR5.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\AntonioJR\Nextcloud\UNIVERSIDAD\Segundo\PRIMER CUATRI\EEDD\PRACTICAS\PR5\cmake-build-debug\CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\abrah\Desktop\PR5\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/PR5.dir/rule
 
 # Convenience name for target.

@@ -1,6 +1,6 @@
 CMakeFiles/PR5.dir/ThashAerop.cpp.obj: \
- C:\Users\AntonioJR\Nextcloud\UNIVERSIDAD\Segundo\PRIMER\ CUATRI\EEDD\PRACTICAS\PR5\ThashAerop.cpp \
- C:\Users\AntonioJR\Nextcloud\UNIVERSIDAD\Segundo\PRIMER\ CUATRI\EEDD\PRACTICAS\PR5\ThashAerop.h \
+ C:\Users\abrah\Desktop\PR5\ThashAerop.cpp \
+ C:\Users\abrah\Desktop\PR5\ThashAerop.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/string \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/requires_hosted.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
@@ -98,8 +98,7 @@ CMakeFiles/PR5.dir/ThashAerop.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uses_allocator.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uses_allocator_args.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tuple \
- C:\Users\AntonioJR\Nextcloud\UNIVERSIDAD\Segundo\PRIMER\ CUATRI\EEDD\PRACTICAS\PR5\Aeropuerto.h \
- C:/Users/AntonioJR/Nextcloud/UNIVERSIDAD/Segundo/PRIMER\ CUATRI/EEDD/PRACTICAS/PR5/UTM.h \
+ C:\Users\abrah\Desktop\PR5\Aeropuerto.h C:/Users/abrah/Desktop/PR5/UTM.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/stdexcept \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/exception \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/exception_ptr.h \

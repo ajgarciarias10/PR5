@@ -46,6 +46,7 @@ int main() {
                    vuelaFlight.addAeropuerto(*aeropuerto);
                    vuelaFlight.mostrarEstadoTabla();
                    vuelaFlight.eliminarAeropuertoInactivo();
+                   cout<<"La tabla sin aeropuertos inactivos: "<<endl;
                    vuelaFlight.mostrarEstadoTabla();
                 }
             }
@@ -56,11 +57,14 @@ int main() {
     #pragma  region Redispersion
         cout<<endl<<"---------------REDISPERSION---------------"<<endl;
         VuelaFlight tabla01(0.75);
-           // vuelaFlight.mostrarEstadoTabla();
     #pragma  endregion
 
+    } catch (bad_alloc &e) {
+        cerr<<e.what();
     }catch (invalid_argument &e){
-        e.what();
+        cerr<<e.what();
+    } catch (out_of_range &e) {
+        cerr<<e.what();
     }
 
      return 0;

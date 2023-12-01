@@ -273,17 +273,20 @@ void ThashAerop::redispersar(unsigned int tam) {
     vector<Entrada>vaux;
     vaux.assign(tam,Entrada());
     for (int i = 0; i < tabla.size() ; ++i) {
-        vaux.push_back(tabla[i]);
+        //metemos en el vector aquellas entradas qeu contengas aeropuertos
+        if (tabla[i].estado=OCUPADA){
+            vaux.push_back(tabla[i]);
+        }
     }
     //Tras eso borramos todos los aeropuertos de tabla
     tabla.erase(tabla.begin(),tabla.end());
     //Asiganmos un nuevo tamaño a la tabla hash llamando al constructor
-    tabla.assign(tamfis,Entrada());
+    tabla.assign(tam,Entrada());
 
     //Pasamos los nuevos elementos a la nueva tabla ya redispersada inicializando de nuevo los datos
     this->tamfis=tam;
     this->tamlog=0;
-    this->primoMen=primoMen= qPrimoT(tamfis, true);
+    this->primoMen= qPrimoT(tamfis, true);
     this->maxColisiones=0;
     this->sumaColisiones=0;
     this->max10=0;

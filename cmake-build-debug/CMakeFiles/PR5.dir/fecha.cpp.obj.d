@@ -1,5 +1,4 @@
-CMakeFiles/PR5.dir/fecha.cpp.obj: \
- C:\Users\AntonioJR\Nextcloud\UNIVERSIDAD\Segundo\PRIMER\ CUATRI\EEDD\PRACTICAS\PR5\fecha.cpp \
+CMakeFiles/PR5.dir/fecha.cpp.obj: C:\Users\abrah\Desktop\PR5\fecha.cpp \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iostream \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/requires_hosted.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
@@ -143,4 +142,4 @@ CMakeFiles/PR5.dir/fecha.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ctime \
- C:\Users\AntonioJR\Nextcloud\UNIVERSIDAD\Segundo\PRIMER\ CUATRI\EEDD\PRACTICAS\PR5\fecha.h
+ C:\Users\abrah\Desktop\PR5\fecha.h

@@ -1,7 +1,7 @@
 # Análisis de tablas de dispersión
 
-* *Antonio José García Arias*
 * *Abraham García Hurtado*
+* *Antonio José García Arias*
 
 ## Tamaño de tabla: 112327
 | función                      | máximo de colisiones | factor de carga |   promedio de colisiones    |
@@ -17,7 +17,7 @@
 | Hash3(Dispersion Doble)      |        28         |       0.649617       |            0.73699        |
 
 ## Justificación de la configuración elegida
-Hemos optado por la funcion de hash3 ya que obtenemos un promedio de colisiones menor y yb maximo de colisiones menor, lo que hace que el programa sea mas eficiente.
+Hemos optado por la funcion de hash3 ya que obtenemos un promedio de colisiones menor y un maximo de colisiones menor, lo que hace que el programa sea mas eficiente.
 ## Programa prueba 2
 Tiempo lectura de la prueba 2 con tabla: 0.359 segs.
 Tiempo lectura de la prueba 2 con el mapa : 0.799 segs.
