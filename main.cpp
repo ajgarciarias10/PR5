@@ -5,8 +5,8 @@ int main() {
     try {
         VuelaFlight vuelaFlight;
     #pragma region Entrenamiento
-            //VuelaFlight tabla068(0.68);
-           // VuelaFlight tabla065(0.65);
+            VuelaFlight tabla068(0.68);
+            VuelaFlight tabla065(0.65);
         #pragma endregion
     #pragma  region Prueba de Rendimiento 1
             //Vector de Aeropuertos

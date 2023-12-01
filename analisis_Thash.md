@@ -7,14 +7,14 @@
 | función                      | máximo de colisiones | factor de carga |   promedio de colisiones    |
 |------------------------------|:--------------------:|:---------------:|:---------------------------:|
 | Hash1(Dispersion Cuadratica) |         170          |     0.6795      |            7.46491            |
-| Hash2(Dispersion Doble)      |        28         |      0.679516      |             1.15284            |
-| Hash3(Dispersion Doble)      |        33         |      0.679516      |              0.868227            |
+| Hash2(Dispersion Doble)      |          28          |      0.679516      |             1.15284            |
+| Hash3(Dispersion Doble)      |          31          |      0.679516      |             0.867938          |
 ## Tamaño de tabla: 117497
-| función                      | máximo de colisiones |  factor de carga  |   promedio de colisiones    |
-|------------------------------|:--------------------:|:-----------------:|:---------------------------:|
-| Hash1(Dispersion Cuadratica) |        123         |       0.649617       |            4.99548            |
-| Hash2(Dispersion Doble)      |        36554         |       0.649617       |            1.60154            |
-| Hash3(Dispersion Doble)      |        28         |       0.649617       |            0.73699        |
+| función                      | máximo de colisiones |  factor de carga  | promedio de colisiones  |
+|------------------------------|:--------------------:|:-----------------:|:-----------------------:|
+| Hash1(Dispersion Cuadratica) |        123         |       0.649617       |         4.99548         |
+| Hash2(Dispersion Doble)      |        36554         |       0.649617       |         1.60154         |
+| Hash3(Dispersion Doble)      |        23         |       0.649617       |           0.727479            |
 
 ## Justificación de la configuración elegida
 Hemos optado por la funcion de hash3 ya que obtenemos un promedio de colisiones menor y un maximo de colisiones menor, lo que hace que el programa sea mas eficiente.
