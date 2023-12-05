@@ -555,7 +555,7 @@ void VuelaFlight::eliminarAeropuerto(string IATA) {
     }
 
     if(!airports.borrar(airports.djb2((unsigned  char*) IATA.c_str()),IATA )){
-        throw invalid_argument("Se cagó encima el borrado");
+        throw invalid_argument("No se ha podido eliminar el aeropuerto");
     }
 
 }
