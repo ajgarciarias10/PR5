@@ -1,6 +1,3 @@
-//
-// Created by AntonioJR on 25/11/2023.
-//
 #include "string"
 #include "Aeropuerto.h"
 #include "vector"

@@ -1,7 +1,3 @@
-//
-// Created by AntonioJR on 25/11/2023.
-//
-
 #include "ThashAerop.h"
 ThashAerop::ThashAerop(): tamlog(0),tamfis(0),sumaColisiones(0),max10(0),
                           maxColisiones(0),redisp(0),tabla(0),primoMen(0) {}

@@ -543,8 +543,7 @@ void VuelaFlight::eliminarAeropuerto(string IATA) {
 
     multimap<string,Ruta*>::iterator  itRutasDest;
     for (itRutasDest = routesDest.begin(); itRutasDest!= routesDest.end() ; ++itRutasDest) {
-        if(itRutasDest->second->getDestination()->getIata() == IATA ||
-                itRutasDest->second->getOrigin()->getIata() == IATA) {
+        if(itRutasDest->second->getDestination()->getIata() == IATA  || itRutasDest->second->getOrigin()->getIata() == IATA) {
             routesDest.erase(itRutasDest);
         }
     }
@@ -558,7 +557,6 @@ void VuelaFlight::eliminarAeropuerto(string IATA) {
     if(!airports.borrar(airports.djb2((unsigned  char*) IATA.c_str()),IATA )){
         throw invalid_argument("Se cagó encima el borrado");
     }
-
 
 }
 
@@ -587,7 +585,6 @@ void VuelaFlight::eliminarAeropuertoInactivo() {
 vector<Aeropuerto *> VuelaFlight::getAeropuertos() {
     return  airports.getAeros();
 }
-
 
 VuelaFlight::VuelaFlight(float fcarga,int nElementos): airports(nElementos,fcarga),routesDest(),routesOrig(),airlines(){
     cargaAeropuertos("aeropuertos_v3.csv");
